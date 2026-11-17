@@ -1,0 +1,8 @@
+{
+  "name": "YasinTime Travel",
+  "description": "Luxury travel agency showcase, curated tour catalog, and real-time CRM & financial management platform for YasinTime Travel.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
