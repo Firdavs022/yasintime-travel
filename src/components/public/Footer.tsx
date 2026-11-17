@@ -1,6 +1,7 @@
 import { CheckCircle2, Instagram, Mail, MessageCircle, Phone, Send } from 'lucide-react';
 import { FormEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { subscribeNewsletter } from '../../services/api';
 import type { Language } from '../../types';
 import { GuideSlug } from './GuidesAndSupport';
 import { LanguageSwitcher } from './LanguageSwitcher';
@@ -22,15 +23,9 @@ export function Footer({ onOpenGuide }: FooterProps) {
     if (!contact.trim()) return;
     setSubmitting(true);
     try {
-      const res = await fetch('/api/newsletter', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ contact, language: lang }),
-      });
-      if (res.ok) {
-        setSubscribed(true);
-        setContact('');
-      }
+      await subscribeNewsletter(contact, lang);
+      setSubscribed(true);
+      setContact('');
     } finally {
       setSubmitting(false);
     }

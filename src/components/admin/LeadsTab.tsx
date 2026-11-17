@@ -1,5 +1,6 @@
 import { Download, Search, Trash2 } from 'lucide-react';
 import { useMemo, useState } from 'react';
+import { deleteAdminLead, updateAdminLead } from '../../services/api';
 import type { Lead, LeadStatus, StaffUser, UserRole } from '../../types';
 import { exportLeads } from '../../utils/export';
 import { formatDateTime } from '../../utils/format';
@@ -7,6 +8,7 @@ import { formatDateTime } from '../../utils/format';
 interface LeadsTabProps {
   leads: Lead[];
   staff: StaffUser[];
+  currentUserEmail: string;
   currentUserRole: UserRole;
   token: string;
   onRefresh: () => void;
@@ -24,6 +26,7 @@ const STATUS_STYLE: Record<LeadStatus, string> = {
 export function LeadsTab({
   leads,
   staff,
+  currentUserEmail,
   currentUserRole,
   token,
   onRefresh,
@@ -51,27 +54,19 @@ export function LeadsTab({
   }, [leads, statusFilter, query]);
 
   const updateLead = async (id: string, patch: Partial<Lead>) => {
-    const res = await fetch(`/api/admin/leads/${id}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(patch),
+    await updateAdminLead(token, id, patch, {
+      email: currentUserEmail,
+      role: currentUserRole,
     });
-    if (res.ok) {
-      onRefresh();
-    }
+    onRefresh();
   };
 
   const deleteLead = async (id: string) => {
-    const res = await fetch(`/api/admin/leads/${id}`, {
-      method: 'DELETE',
-      headers: { Authorization: `Bearer ${token}` },
+    await deleteAdminLead(token, id, {
+      email: currentUserEmail,
+      role: currentUserRole,
     });
-    if (res.ok) {
-      onRefresh();
-    }
+    onRefresh();
   };
 
   return (

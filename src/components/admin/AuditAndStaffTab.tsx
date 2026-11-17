@@ -1,11 +1,13 @@
 import { UserPlus } from 'lucide-react';
 import { FormEvent, useState } from 'react';
+import { createAdminStaff, updateAdminStaffRole } from '../../services/api';
 import type { AuditLog, StaffUser, UserRole } from '../../types';
 import { formatDateTime } from '../../utils/format';
 
 interface AuditAndStaffTabProps {
   auditLogs: AuditLog[];
   staff: StaffUser[];
+  currentUserEmail: string;
   currentUserRole: UserRole;
   token: string;
   onRefresh: () => void;
@@ -14,6 +16,7 @@ interface AuditAndStaffTabProps {
 export function AuditAndStaffTab({
   auditLogs,
   staff,
+  currentUserEmail,
   currentUserRole,
   token,
   onRefresh,
@@ -28,35 +31,27 @@ export function AuditAndStaffTab({
   const handleAddStaff = async (e: FormEvent) => {
     e.preventDefault();
     setError('');
-    const res = await fetch('/api/admin/staff', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({ name, email, password, role }),
-    });
-    const data = await res.json();
-    if (!res.ok) {
-      setError(data.error || 'Failed to add staff');
-      return;
+    try {
+      await createAdminStaff(
+        token,
+        { name, email, password, role },
+        { email: currentUserEmail, role: currentUserRole }
+      );
+      setName('');
+      setEmail('');
+      setPassword('');
+      onRefresh();
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Failed to add staff');
     }
-    setName('');
-    setEmail('');
-    setPassword('');
-    onRefresh();
   };
 
   const handleRoleChange = async (id: string, nextRole: UserRole) => {
-    const res = await fetch(`/api/admin/staff/${id}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({ role: nextRole }),
+    await updateAdminStaffRole(token, id, nextRole, {
+      email: currentUserEmail,
+      role: currentUserRole,
     });
-    if (res.ok) onRefresh();
+    onRefresh();
   };
 
   return (

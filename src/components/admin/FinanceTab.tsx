@@ -1,5 +1,6 @@
 import { Download, Plus, Trash2 } from 'lucide-react';
 import { FormEvent, useMemo, useState } from 'react';
+import { createAdminExpense, deleteAdminExpense } from '../../services/api';
 import type { Expense, ExpenseCategory, Lead, UserRole } from '../../types';
 import { exportFinancials } from '../../utils/export';
 
@@ -7,6 +8,7 @@ interface FinanceTabProps {
   leads: Lead[];
   expenses: Expense[];
   exchangeRate: number;
+  currentUserEmail: string;
   currentUserRole: UserRole;
   token: string;
   onRefresh: () => void;
@@ -28,6 +30,7 @@ export function FinanceTab({
   leads,
   expenses,
   exchangeRate,
+  currentUserEmail,
   currentUserRole,
   token,
   onRefresh,
@@ -127,38 +130,33 @@ export function FinanceTab({
     if (!title.trim() || !num || num <= 0) return;
     setSaving(true);
     try {
-      const res = await fetch('/api/admin/expenses', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
+      await createAdminExpense(
+        token,
+        {
           title,
           category,
           amountUsd: num,
           amountUzs: num * exchangeRate,
           date,
           notes,
-        }),
-      });
-      if (res.ok) {
-        setTitle('');
-        setAmountUsd('');
-        setNotes('');
-        onRefresh();
-      }
+        },
+        { email: currentUserEmail, role: currentUserRole }
+      );
+      setTitle('');
+      setAmountUsd('');
+      setNotes('');
+      onRefresh();
     } finally {
       setSaving(false);
     }
   };
 
   const handleDeleteExpense = async (id: string) => {
-    const res = await fetch(`/api/admin/expenses/${id}`, {
-      method: 'DELETE',
-      headers: { Authorization: `Bearer ${token}` },
+    await deleteAdminExpense(token, id, {
+      email: currentUserEmail,
+      role: currentUserRole,
     });
-    if (res.ok) onRefresh();
+    onRefresh();
   };
 
   return (

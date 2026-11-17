@@ -9,6 +9,11 @@ import {
 } from 'lucide-react';
 import { FormEvent, useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import {
+  fetchAdminDashboard,
+  loginAdmin,
+  verifyAdminSession,
+} from '../../services/api';
 import type { AdminDashboardData, UserRole } from '../../types';
 import { AuditAndStaffTab } from './AuditAndStaffTab';
 import { FinanceTab } from './FinanceTab';
@@ -49,11 +54,8 @@ export function AdminPortal({ onBackToSite }: AdminPortalProps) {
   const [sseConnected, setSseConnected] = useState(false);
 
   const fetchDashboard = useCallback(async (authToken: string) => {
-    const res = await fetch('/api/admin/dashboard', {
-      headers: authToken ? { Authorization: `Bearer ${authToken}` } : {},
-    });
-    if (res.ok) {
-      const data = (await res.json()) as AdminDashboardData;
+    const data = await fetchAdminDashboard(authToken);
+    if (data) {
       setDashboard(data);
     }
   }, []);
@@ -63,18 +65,13 @@ export function AdminPortal({ onBackToSite }: AdminPortalProps) {
     let active = true;
     const check = async () => {
       try {
-        const res = await fetch('/api/auth/me', {
-          headers: token ? { Authorization: `Bearer ${token}` } : {},
-        });
-        if (res.ok) {
-          const data = await res.json();
-          if (active) {
-            setUser(data.user);
-            if (data.user.role === 'Accountant') {
-              setActiveTab('finance');
-            }
-            await fetchDashboard(token);
+        const session = await verifyAdminSession(token);
+        if (session && active) {
+          setUser(session.user);
+          if (session.user.role === 'Accountant') {
+            setActiveTab('finance');
           }
+          await fetchDashboard(token);
         } else if (active) {
           setUser(null);
         }
@@ -88,9 +85,12 @@ export function AdminPortal({ onBackToSite }: AdminPortalProps) {
     };
   }, [token, fetchDashboard]);
 
-  // Real-time SSE listener when logged in
+  // Real-time SSE listener when logged in against live Node server
   useEffect(() => {
-    if (!user) return;
+    if (!user || token.startsWith('local:')) {
+      if (user) setSseConnected(true);
+      return;
+    }
     const url = token ? `/api/events?token=${encodeURIComponent(token)}` : '/api/events';
     const es = new EventSource(url);
 
@@ -116,24 +116,16 @@ export function AdminPortal({ onBackToSite }: AdminPortalProps) {
     setLoginError('');
     setLoggingIn(true);
     try {
-      const res = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.error || 'Kirish rad etildi');
-      }
-      window.sessionStorage.setItem(TOKEN_STORAGE_KEY, data.token);
-      setToken(data.token);
-      setUser(data.user);
-      if (data.user.role === 'Accountant') {
+      const result = await loginAdmin(email, password);
+      window.sessionStorage.setItem(TOKEN_STORAGE_KEY, result.token);
+      setToken(result.token);
+      setUser(result.user);
+      if (result.user.role === 'Accountant') {
         setActiveTab('finance');
       } else {
         setActiveTab('leads');
       }
-      await fetchDashboard(data.token);
+      await fetchDashboard(result.token);
     } catch (err: unknown) {
       setLoginError(err instanceof Error ? err.message : 'Xatolik yuz berdi');
     } finally {
@@ -142,7 +134,9 @@ export function AdminPortal({ onBackToSite }: AdminPortalProps) {
   };
 
   const handleLogout = async () => {
-    await fetch('/api/auth/logout', { method: 'POST' });
+    if (!token.startsWith('local:')) {
+      fetch('/api/auth/logout', { method: 'POST' }).catch(() => {});
+    }
     window.sessionStorage.removeItem(TOKEN_STORAGE_KEY);
     setToken('');
     setUser(null);
@@ -364,6 +358,7 @@ export function AdminPortal({ onBackToSite }: AdminPortalProps) {
                 <LeadsTab
                   leads={dashboard.leads}
                   staff={dashboard.staff}
+                  currentUserEmail={user.email}
                   currentUserRole={user.role}
                   token={token}
                   onRefresh={() => fetchDashboard(token)}
@@ -374,6 +369,7 @@ export function AdminPortal({ onBackToSite }: AdminPortalProps) {
                   categories={dashboard.categories}
                   tours={dashboard.tours}
                   exchangeRate={dashboard.exchangeRateUzs}
+                  currentUserEmail={user.email}
                   currentUserRole={user.role}
                   token={token}
                   onRefresh={() => fetchDashboard(token)}
@@ -384,6 +380,7 @@ export function AdminPortal({ onBackToSite }: AdminPortalProps) {
                   leads={dashboard.leads}
                   expenses={dashboard.expenses}
                   exchangeRate={dashboard.exchangeRateUzs}
+                  currentUserEmail={user.email}
                   currentUserRole={user.role}
                   token={token}
                   onRefresh={() => fetchDashboard(token)}
@@ -393,6 +390,7 @@ export function AdminPortal({ onBackToSite }: AdminPortalProps) {
                 <AuditAndStaffTab
                   auditLogs={dashboard.auditLogs}
                   staff={dashboard.staff}
+                  currentUserEmail={user.email}
                   currentUserRole={user.role}
                   token={token}
                   onRefresh={() => fetchDashboard(token)}

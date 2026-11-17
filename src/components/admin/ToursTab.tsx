@@ -1,5 +1,11 @@
 import { Download, Edit3, Plus, Trash2, X } from 'lucide-react';
 import { FormEvent, useState } from 'react';
+import {
+  createAdminCategory,
+  deleteAdminCategory,
+  deleteAdminTour,
+  saveAdminTour,
+} from '../../services/api';
 import type { Category, ItineraryDay, TourPackage, UserRole } from '../../types';
 import { exportTours } from '../../utils/export';
 
@@ -7,6 +13,7 @@ interface ToursTabProps {
   categories: Category[];
   tours: TourPackage[];
   exchangeRate: number;
+  currentUserEmail: string;
   currentUserRole: UserRole;
   token: string;
   onRefresh: () => void;
@@ -24,6 +31,7 @@ export function ToursTab({
   categories,
   tours,
   exchangeRate,
+  currentUserEmail,
   currentUserRole,
   token,
   onRefresh,
@@ -118,13 +126,9 @@ export function ToursTab({
     if (!catNameUz.trim() || !catSlug.trim()) return;
     setCatSaving(true);
     try {
-      const res = await fetch('/api/admin/categories', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
+      await createAdminCategory(
+        token,
+        {
           slug: catSlug,
           name: {
             uz: catNameUz,
@@ -133,26 +137,25 @@ export function ToursTab({
             tj: catNameUz,
           },
           subtitle: { uz: '', ru: '', en: '', tj: '' },
-        }),
-      });
-      if (res.ok) {
-        setCatNameUz('');
-        setCatNameRu('');
-        setCatNameEn('');
-        setCatSlug('');
-        onRefresh();
-      }
+        },
+        { email: currentUserEmail, role: currentUserRole }
+      );
+      setCatNameUz('');
+      setCatNameRu('');
+      setCatNameEn('');
+      setCatSlug('');
+      onRefresh();
     } finally {
       setCatSaving(false);
     }
   };
 
   const handleDeleteCategory = async (id: string) => {
-    const res = await fetch(`/api/admin/categories/${id}`, {
-      method: 'DELETE',
-      headers: { Authorization: `Bearer ${token}` },
+    await deleteAdminCategory(token, id, {
+      email: currentUserEmail,
+      role: currentUserRole,
     });
-    if (res.ok) onRefresh();
+    onRefresh();
   };
 
   const handleSaveTour = async (e: FormEvent) => {
@@ -183,6 +186,7 @@ export function ToursTab({
         includesFlight,
         includesTransfer,
         includesInsurance,
+        featured: false,
         active,
         photos,
         summary: {
@@ -193,31 +197,23 @@ export function ToursTab({
         },
         itinerary,
       };
-      const url = editingTourId ? `/api/admin/tours/${editingTourId}` : '/api/admin/tours';
-      const method = editingTourId ? 'PATCH' : 'POST';
-      const res = await fetch(url, {
-        method,
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(payload),
+      await saveAdminTour(token, editingTourId, payload, {
+        email: currentUserEmail,
+        role: currentUserRole,
       });
-      if (res.ok) {
-        setModalOpen(false);
-        onRefresh();
-      }
+      setModalOpen(false);
+      onRefresh();
     } finally {
       setSavingTour(false);
     }
   };
 
   const handleDeleteTour = async (id: string) => {
-    const res = await fetch(`/api/admin/tours/${id}`, {
-      method: 'DELETE',
-      headers: { Authorization: `Bearer ${token}` },
+    await deleteAdminTour(token, id, {
+      email: currentUserEmail,
+      role: currentUserRole,
     });
-    if (res.ok) onRefresh();
+    onRefresh();
   };
 
   return (

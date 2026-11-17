@@ -6,7 +6,8 @@ import { HeroSection } from './components/public/HeroSection';
 import { Navbar } from './components/public/Navbar';
 import { TourCatalog } from './components/public/TourCatalog';
 import { TourDetailView } from './components/public/TourDetailView';
-import type { Category, Currency, PublicBootstrapData, TourPackage } from './types';
+import { fetchPublicBootstrap } from './services/api';
+import type { Category, Currency, TourPackage } from './types';
 
 export default function App() {
   const [pathname, setPathname] = useState<string>(() => window.location.pathname || '/');
@@ -22,13 +23,10 @@ export default function App() {
 
   const loadPublicData = useCallback(async () => {
     try {
-      const res = await fetch('/api/public/bootstrap');
-      if (res.ok) {
-        const data = (await res.json()) as PublicBootstrapData;
-        setCategories(data.categories);
-        setTours(data.tours);
-        setExchangeRate(data.exchangeRateUzs || 12850);
-      }
+      const data = await fetchPublicBootstrap();
+      setCategories(data.categories);
+      setTours(data.tours);
+      setExchangeRate(data.exchangeRateUzs || 12850);
     } finally {
       setLoading(false);
     }

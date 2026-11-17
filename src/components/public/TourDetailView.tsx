@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import { FormEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { submitPublicLead } from '../../services/api';
 import type { Currency, Language, TourPackage } from '../../types';
 import { formatMoney, pickLocalized } from '../../utils/format';
 
@@ -51,25 +52,17 @@ export function TourDetailView({
     setErrorMsg('');
     setSubmitting(true);
     try {
-      const res = await fetch('/api/leads', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          customerName,
-          phone,
-          email,
-          tourId: tour.id,
-          tourTitle: tour.title.uz,
-          travelers,
-          preferredDate,
-          message,
-          source: 'booking',
-        }),
+      await submitPublicLead({
+        customerName,
+        phone,
+        email,
+        tourId: tour.id,
+        tourTitle: tour.title.uz,
+        travelers,
+        preferredDate,
+        message,
+        source: 'booking',
       });
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.error || 'Submission failed');
-      }
       setSubmitted(true);
       setCustomerName('');
       setPhone('');

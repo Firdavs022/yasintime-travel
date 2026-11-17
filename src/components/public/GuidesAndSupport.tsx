@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { FormEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { submitPublicLead } from '../../services/api';
 import type { Language } from '../../types';
 
 export type GuideSlug = 'useful' | 'visa' | 'destinations' | 'offers' | 'about';
@@ -214,21 +215,15 @@ export function GuidesAndSupport({ activeGuide, onOpenGuide }: GuidesAndSupportP
     setErrorMsg('');
     setSubmitting(true);
     try {
-      const res = await fetch('/api/leads', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          customerName,
-          phone,
-          email,
-          message,
-          tourTitle: 'Individual Concierge Consultation',
-          travelers: 2,
-          source: 'consultation',
-        }),
+      await submitPublicLead({
+        customerName,
+        phone,
+        email,
+        message,
+        tourTitle: 'Individual Concierge Consultation',
+        travelers: 2,
+        source: 'consultation',
       });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'Error submitting');
       setSubmitted(true);
       setCustomerName('');
       setPhone('');
