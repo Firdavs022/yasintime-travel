@@ -238,17 +238,22 @@ export function GuidesAndSupport({ activeGuide, onOpenGuide }: GuidesAndSupportP
 
   return (
     <>
-      {/* Aviasales-Style Guides & Travel Intelligence Section */}
-      <section id="guides" className="py-20 bg-[#0A192F] border-b border-white/10">
+      {/* Guides Section */}
+      <section
+        id="guides"
+        className="py-20 bg-[#F7F5F0] dark:bg-[#0A192F] border-b border-[#0A192F]/10 dark:border-white/10 transition-colors duration-150"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl mb-12">
-            <p className="text-xs uppercase tracking-[0.2em] text-[#C49A45] mb-2">
+            <p className="text-xs uppercase tracking-[0.2em] text-[#9E7823] dark:text-[#C49A45] mb-2">
               {t('guides.eyebrow')}
             </p>
-            <h2 className="font-serif-display text-3xl sm:text-4xl font-semibold text-[#F8FAFC] mb-3">
+            <h2 className="font-serif-display text-3xl sm:text-4xl font-semibold text-[#0A192F] dark:text-[#F8FAFC] mb-3">
               {t('guides.title')}
             </h2>
-            <p className="text-sm text-[#94A3B8] leading-relaxed">{t('guides.subtitle')}</p>
+            <p className="text-sm text-[#475569] dark:text-[#94A3B8] leading-relaxed">
+              {t('guides.subtitle')}
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -257,19 +262,21 @@ export function GuidesAndSupport({ activeGuide, onOpenGuide }: GuidesAndSupportP
                 key={article.slug}
                 type="button"
                 onClick={() => onOpenGuide(article.slug)}
-                className="text-left border border-white/10 hover:border-[#C49A45]/60 bg-[#112240] p-6 flex flex-col justify-between transition-colors duration-150 cursor-pointer group"
+                className="text-left border border-[#0A192F]/12 dark:border-white/10 hover:border-[#C49A45] bg-white dark:bg-[#112240] p-6 flex flex-col justify-between transition-colors duration-150 cursor-pointer group"
               >
                 <div>
-                  <div className="text-xs font-mono-nums text-[#C49A45] mb-3">0{idx + 1}.</div>
-                  <h3 className="font-serif-display text-xl font-semibold text-[#F8FAFC] mb-2.5">
+                  <div className="text-xs font-mono-nums text-[#9E7823] dark:text-[#C49A45] mb-3">
+                    0{idx + 1}.
+                  </div>
+                  <h3 className="font-serif-display text-xl font-semibold text-[#0A192F] dark:text-[#F8FAFC] mb-2.5">
                     {t(article.titleKey)}
                   </h3>
-                  <p className="text-xs text-[#94A3B8] leading-relaxed">
+                  <p className="text-xs text-[#475569] dark:text-[#94A3B8] leading-relaxed">
                     {article.summary[lang] || article.summary.uz}
                   </p>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-[#C49A45]">
+                <div className="mt-6 pt-4 border-t border-[#0A192F]/10 dark:border-white/10 flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-[#9E7823] dark:text-[#C49A45]">
                   <span>{t('guides.readGuide')}</span>
                   <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
                 </div>
@@ -279,35 +286,37 @@ export function GuidesAndSupport({ activeGuide, onOpenGuide }: GuidesAndSupportP
         </div>
       </section>
 
-      {/* Consultation & Contact Center Section */}
-      <section id="contact" className="py-20 bg-[#112240] border-b border-white/10">
+      {/* Consultation & Contact Center */}
+      <section
+        id="contact"
+        className="py-20 bg-[#EFECE4] dark:bg-[#112240] border-b border-[#0A192F]/10 dark:border-white/10 transition-colors duration-150"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-            {/* Direct Contact Center */}
             <div className="lg:col-span-5 space-y-8">
               <div>
-                <p className="text-xs uppercase tracking-[0.2em] text-[#C49A45] mb-2">
+                <p className="text-xs uppercase tracking-[0.2em] text-[#9E7823] dark:text-[#C49A45] mb-2">
                   {t('consultation.officeTitle')}
                 </p>
-                <h2 className="font-serif-display text-3xl font-semibold text-[#F8FAFC] mb-3">
+                <h2 className="font-serif-display text-3xl font-semibold text-[#0A192F] dark:text-[#F8FAFC] mb-3">
                   {t('consultation.title')}
                 </h2>
-                <p className="text-sm text-[#94A3B8] leading-relaxed">
+                <p className="text-sm text-[#475569] dark:text-[#94A3B8] leading-relaxed">
                   {t('consultation.subtitle')}
                 </p>
               </div>
 
-              <div className="divide-y divide-white/10 border border-white/10 bg-[#0A192F]">
+              <div className="divide-y divide-[#0A192F]/10 dark:divide-white/10 border border-[#0A192F]/12 dark:border-white/10 bg-white dark:bg-[#0A192F]">
                 <a
                   href="tel:+998508767722"
-                  className="p-4 flex items-center gap-4 hover:bg-[#162B4D]/60 transition-colors"
+                  className="p-4 flex items-center gap-4 hover:bg-[#F7F5F0] dark:hover:bg-[#162B4D]/60 transition-colors"
                 >
-                  <Phone className="w-4 h-4 text-[#C49A45] shrink-0" />
+                  <Phone className="w-4 h-4 text-[#9E7823] dark:text-[#C49A45] shrink-0" />
                   <div>
-                    <div className="text-[11px] uppercase tracking-wider text-[#94A3B8]">
+                    <div className="text-[11px] uppercase tracking-wider text-[#64748B] dark:text-[#94A3B8]">
                       Hotline / Call Center
                     </div>
-                    <div className="font-mono-nums text-sm font-semibold text-[#F8FAFC]">
+                    <div className="font-mono-nums text-sm font-semibold text-[#0A192F] dark:text-[#F8FAFC]">
                       +998 50 876 77 22
                     </div>
                   </div>
@@ -315,14 +324,14 @@ export function GuidesAndSupport({ activeGuide, onOpenGuide }: GuidesAndSupportP
 
                 <a
                   href="mailto:ooo.yasintime@gmail.com"
-                  className="p-4 flex items-center gap-4 hover:bg-[#162B4D]/60 transition-colors"
+                  className="p-4 flex items-center gap-4 hover:bg-[#F7F5F0] dark:hover:bg-[#162B4D]/60 transition-colors"
                 >
-                  <Mail className="w-4 h-4 text-[#C49A45] shrink-0" />
+                  <Mail className="w-4 h-4 text-[#9E7823] dark:text-[#C49A45] shrink-0" />
                   <div>
-                    <div className="text-[11px] uppercase tracking-wider text-[#94A3B8]">
+                    <div className="text-[11px] uppercase tracking-wider text-[#64748B] dark:text-[#94A3B8]">
                       Email
                     </div>
-                    <div className="text-sm font-medium text-[#F8FAFC]">
+                    <div className="text-sm font-medium text-[#0A192F] dark:text-[#F8FAFC]">
                       ooo.yasintime@gmail.com
                     </div>
                   </div>
@@ -333,66 +342,65 @@ export function GuidesAndSupport({ activeGuide, onOpenGuide }: GuidesAndSupportP
                     href="https://t.me/yasintime"
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center gap-2 text-[#E8DCC4] hover:text-[#C49A45] py-1"
+                    className="flex items-center gap-2 text-[#334155] dark:text-[#E8DCC4] hover:text-[#9E7823] dark:hover:text-[#C49A45] py-1"
                   >
-                    <Send className="w-3.5 h-3.5 text-[#C49A45]" />
+                    <Send className="w-3.5 h-3.5 text-[#9E7823] dark:text-[#C49A45]" />
                     <span>@yasintime</span>
                   </a>
                   <a
                     href="https://wa.me/998508767722"
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center gap-2 text-[#E8DCC4] hover:text-[#C49A45] py-1"
+                    className="flex items-center gap-2 text-[#334155] dark:text-[#E8DCC4] hover:text-[#9E7823] dark:hover:text-[#C49A45] py-1"
                   >
-                    <MessageCircle className="w-3.5 h-3.5 text-[#C49A45]" />
+                    <MessageCircle className="w-3.5 h-3.5 text-[#9E7823] dark:text-[#C49A45]" />
                     <span>WhatsApp</span>
                   </a>
                   <a
                     href="https://instagram.com/yasintime.travel"
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center gap-2 text-[#E8DCC4] hover:text-[#C49A45] py-1"
+                    className="flex items-center gap-2 text-[#334155] dark:text-[#E8DCC4] hover:text-[#9E7823] dark:hover:text-[#C49A45] py-1"
                   >
-                    <Instagram className="w-3.5 h-3.5 text-[#C49A45]" />
+                    <Instagram className="w-3.5 h-3.5 text-[#9E7823] dark:text-[#C49A45]" />
                     <span>@yasintime.travel</span>
                   </a>
                 </div>
 
-                <div className="p-4 space-y-2 text-xs text-[#94A3B8]">
-                  <div className="flex items-center gap-2.5 text-[#E8DCC4]">
-                    <MapPin className="w-3.5 h-3.5 text-[#C49A45] shrink-0" />
+                <div className="p-4 space-y-2 text-xs text-[#64748B] dark:text-[#94A3B8]">
+                  <div className="flex items-center gap-2.5 text-[#334155] dark:text-[#E8DCC4]">
+                    <MapPin className="w-3.5 h-3.5 text-[#9E7823] dark:text-[#C49A45] shrink-0" />
                     <span>{t('consultation.officeAddress')}</span>
                   </div>
                   <div className="flex items-center gap-2.5">
-                    <Clock className="w-3.5 h-3.5 text-[#C49A45] shrink-0" />
+                    <Clock className="w-3.5 h-3.5 text-[#9E7823] dark:text-[#C49A45] shrink-0" />
                     <span>{t('consultation.workingHours')}</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Real-Time Lead Capture Form */}
-            <div className="lg:col-span-7 border border-[#C49A45]/30 bg-[#0A192F] p-6 sm:p-8">
-              <p className="text-xs uppercase tracking-[0.18em] text-[#C49A45] mb-1">
+            <div className="lg:col-span-7 border border-[#C49A45]/35 bg-white dark:bg-[#0A192F] p-6 sm:p-8">
+              <p className="text-xs uppercase tracking-[0.18em] text-[#9E7823] dark:text-[#C49A45] mb-1">
                 {t('consultation.eyebrow')}
               </p>
-              <h3 className="font-serif-display text-2xl font-semibold text-[#F8FAFC] mb-6">
+              <h3 className="font-serif-display text-2xl font-semibold text-[#0A192F] dark:text-[#F8FAFC] mb-6">
                 {t('consultation.sendRequest')}
               </h3>
 
               {submitted ? (
-                <div className="border border-[#C49A45]/40 bg-[#112240] p-6 space-y-3">
-                  <div className="flex items-center gap-2.5 text-[#C49A45]">
+                <div className="border border-[#C49A45]/45 bg-[#F7F5F0] dark:bg-[#112240] p-6 space-y-3">
+                  <div className="flex items-center gap-2.5 text-[#9E7823] dark:text-[#C49A45]">
                     <CheckCircle2 className="w-5 h-5" />
                     <span className="text-sm font-semibold">{t('detail.successTitle')}</span>
                   </div>
-                  <p className="text-xs text-[#E8DCC4]/85 leading-relaxed">
+                  <p className="text-xs text-[#334155] dark:text-[#E8DCC4]/85 leading-relaxed">
                     {t('detail.successDesc')}
                   </p>
                   <button
                     type="button"
                     onClick={() => setSubmitted(false)}
-                    className="text-xs font-medium text-[#C49A45] underline cursor-pointer pt-1"
+                    className="text-xs font-medium text-[#9E7823] dark:text-[#C49A45] underline cursor-pointer pt-1"
                   >
                     + {t('consultation.sendRequest')}
                   </button>
@@ -401,7 +409,7 @@ export function GuidesAndSupport({ activeGuide, onOpenGuide }: GuidesAndSupportP
                 <form onSubmit={handleConsultationSubmit} className="space-y-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs text-[#E8DCC4]/80 mb-1.5">
+                      <label className="block text-xs text-[#334155] dark:text-[#E8DCC4]/80 mb-1.5">
                         {t('detail.fullName')} *
                       </label>
                       <input
@@ -409,11 +417,11 @@ export function GuidesAndSupport({ activeGuide, onOpenGuide }: GuidesAndSupportP
                         required
                         value={customerName}
                         onChange={(e) => setCustomerName(e.target.value)}
-                        className="w-full bg-[#112240] border border-white/15 px-3.5 py-2.5 text-sm text-[#F8FAFC] focus:outline-none focus:border-[#C49A45]"
+                        className="w-full bg-[#F7F5F0] dark:bg-[#112240] border border-[#0A192F]/15 dark:border-white/15 px-3.5 py-2.5 text-sm text-[#0A192F] dark:text-[#F8FAFC] focus:outline-none focus:border-[#C49A45]"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs text-[#E8DCC4]/80 mb-1.5">
+                      <label className="block text-xs text-[#334155] dark:text-[#E8DCC4]/80 mb-1.5">
                         {t('detail.phone')} *
                       </label>
                       <input
@@ -422,36 +430,36 @@ export function GuidesAndSupport({ activeGuide, onOpenGuide }: GuidesAndSupportP
                         placeholder="+998 50 876 77 22"
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
-                        className="w-full bg-[#112240] border border-white/15 px-3.5 py-2.5 text-sm text-[#F8FAFC] font-mono-nums focus:outline-none focus:border-[#C49A45]"
+                        className="w-full bg-[#F7F5F0] dark:bg-[#112240] border border-[#0A192F]/15 dark:border-white/15 px-3.5 py-2.5 text-sm text-[#0A192F] dark:text-[#F8FAFC] font-mono-nums focus:outline-none focus:border-[#C49A45]"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-xs text-[#E8DCC4]/80 mb-1.5">
+                    <label className="block text-xs text-[#334155] dark:text-[#E8DCC4]/80 mb-1.5">
                       {t('detail.email')}
                     </label>
                     <input
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="w-full bg-[#112240] border border-white/15 px-3.5 py-2.5 text-sm text-[#F8FAFC] focus:outline-none focus:border-[#C49A45]"
+                      className="w-full bg-[#F7F5F0] dark:bg-[#112240] border border-[#0A192F]/15 dark:border-white/15 px-3.5 py-2.5 text-sm text-[#0A192F] dark:text-[#F8FAFC] focus:outline-none focus:border-[#C49A45]"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs text-[#E8DCC4]/80 mb-1.5">
+                    <label className="block text-xs text-[#334155] dark:text-[#E8DCC4]/80 mb-1.5">
                       {t('detail.notes')}
                     </label>
                     <textarea
                       rows={3}
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
-                      className="w-full bg-[#112240] border border-white/15 px-3.5 py-2.5 text-sm text-[#F8FAFC] focus:outline-none focus:border-[#C49A45]"
+                      className="w-full bg-[#F7F5F0] dark:bg-[#112240] border border-[#0A192F]/15 dark:border-white/15 px-3.5 py-2.5 text-sm text-[#0A192F] dark:text-[#F8FAFC] focus:outline-none focus:border-[#C49A45]"
                     />
                   </div>
 
-                  {errorMsg && <p className="text-xs text-red-400">{errorMsg}</p>}
+                  {errorMsg && <p className="text-xs text-red-500 dark:text-red-400">{errorMsg}</p>}
 
                   <button
                     type="submit"
@@ -470,46 +478,51 @@ export function GuidesAndSupport({ activeGuide, onOpenGuide }: GuidesAndSupportP
       {/* Guide Reader Modal */}
       {selectedArticle && (
         <div
-          className="fixed inset-0 z-50 bg-[#0A192F]/85 backdrop-blur-xs flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-[#0A192F]/80 backdrop-blur-xs flex items-center justify-center p-4"
           onClick={() => onOpenGuide(null)}
         >
           <div
-            className="max-w-2xl w-full border border-[#C49A45]/40 bg-[#112240] p-6 sm:p-8 max-h-[85vh] overflow-y-auto"
+            className="max-w-2xl w-full border border-[#C49A45]/45 bg-white dark:bg-[#112240] p-6 sm:p-8 max-h-[85vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-start justify-between gap-4 pb-4 mb-5 border-b border-white/10">
+            <div className="flex items-start justify-between gap-4 pb-4 mb-5 border-b border-[#0A192F]/10 dark:border-white/10">
               <div>
-                <p className="text-xs uppercase tracking-[0.18em] text-[#C49A45] mb-1">
+                <p className="text-xs uppercase tracking-[0.18em] text-[#9E7823] dark:text-[#C49A45] mb-1">
                   YasinTime Travel Guide
                 </p>
-                <h3 className="font-serif-display text-2xl font-semibold text-[#F8FAFC]">
+                <h3 className="font-serif-display text-2xl font-semibold text-[#0A192F] dark:text-[#F8FAFC]">
                   {t(selectedArticle.titleKey)}
                 </h3>
               </div>
               <button
                 type="button"
                 onClick={() => onOpenGuide(null)}
-                className="p-2 text-[#94A3B8] hover:text-[#F8FAFC] border border-white/10 cursor-pointer"
+                className="p-2 text-[#64748B] dark:text-[#94A3B8] hover:text-[#0A192F] dark:hover:text-[#F8FAFC] border border-[#0A192F]/15 dark:border-white/10 cursor-pointer"
                 aria-label={t('guides.closeGuide')}
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
 
-            <p className="text-sm text-[#E8DCC4]/90 leading-relaxed mb-6">
+            <p className="text-sm text-[#334155] dark:text-[#E8DCC4]/90 leading-relaxed mb-6">
               {selectedArticle.summary[lang] || selectedArticle.summary.uz}
             </p>
 
-            <ul className="space-y-3 border-t border-white/10 pt-5">
+            <ul className="space-y-3 border-t border-[#0A192F]/10 dark:border-white/10 pt-5">
               {(selectedArticle.bullets[lang] || selectedArticle.bullets.uz).map((item, i) => (
-                <li key={i} className="flex items-start gap-3 text-sm text-[#F8FAFC]/90">
-                  <span className="font-mono-nums text-xs text-[#C49A45] pt-0.5">0{i + 1}.</span>
+                <li
+                  key={i}
+                  className="flex items-start gap-3 text-sm text-[#0A192F] dark:text-[#F8FAFC]/90"
+                >
+                  <span className="font-mono-nums text-xs text-[#9E7823] dark:text-[#C49A45] pt-0.5">
+                    0{i + 1}.
+                  </span>
                   <span>{item}</span>
                 </li>
               ))}
             </ul>
 
-            <div className="mt-8 pt-4 border-t border-white/10 flex justify-end">
+            <div className="mt-8 pt-4 border-t border-[#0A192F]/10 dark:border-white/10 flex justify-end">
               <button
                 type="button"
                 onClick={() => onOpenGuide(null)}

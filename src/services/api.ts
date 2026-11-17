@@ -20,8 +20,8 @@ import type {
   UserRole,
 } from '../types';
 
-const LOCAL_DB_KEY = 'yasintime_local_db_v1';
-const LOCAL_PASSWORDS_KEY = 'yasintime_local_pw_v1';
+const LOCAL_DB_KEY = 'yasintime_local_db_v2';
+const LOCAL_PASSWORDS_KEY = 'yasintime_local_pw_v2';
 
 interface LocalDbState extends AdminDashboardData {}
 
@@ -67,8 +67,6 @@ function loadLocalPasswords(): Record<string, string> {
   }
   const initial: Record<string, string> = {
     'ooo.yasintime@gmail.com': 'yasin4545',
-    'malika.manager@yasintime.uz': 'manager2026',
-    'aziz.finance@yasintime.uz': 'finance2026',
   };
   window.localStorage.setItem(LOCAL_PASSWORDS_KEY, JSON.stringify(initial));
   return initial;

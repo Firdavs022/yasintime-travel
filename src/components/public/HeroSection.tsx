@@ -25,7 +25,7 @@ export function HeroSection({
   return (
     <section
       id="directions"
-      className="relative min-h-[88vh] flex flex-col justify-between bg-[#0A192F] overflow-hidden border-b border-[#C49A45]/20"
+      className="relative min-h-[88vh] flex flex-col justify-between bg-[#0A192F] overflow-hidden border-b border-[#C49A45]/25"
     >
       {/* Background Architectural Image + Measured Scrim */}
       <div className="absolute inset-0 z-0">
@@ -41,7 +41,7 @@ export function HeroSection({
           <div className="w-full h-full bg-gradient-to-br from-[#0A192F] via-[#112240] to-[#081224]" />
         )}
         <div
-          className="absolute inset-0 bg-gradient-to-b from-[#0A192F]/85 via-[#0A192F]/65 to-[#0A192F]"
+          className="absolute inset-0 bg-gradient-to-b from-[#0A192F]/80 via-[#0A192F]/65 to-[#0A192F]/90"
           aria-hidden="true"
         />
       </div>
@@ -58,7 +58,7 @@ export function HeroSection({
           >
             {t('hero.title')}
           </h1>
-          <p className="text-base sm:text-lg text-[#E8DCC4]/85 leading-relaxed max-w-2xl mb-9">
+          <p className="text-base sm:text-lg text-[#E8DCC4]/90 leading-relaxed max-w-2xl mb-9">
             {t('hero.subtitle')}
           </p>
           <div className="flex items-center gap-4">
@@ -76,7 +76,7 @@ export function HeroSection({
 
       {/* 4 Signature Travel Directions Strip */}
       <div className="relative z-10 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pb-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border border-[#C49A45]/25 bg-[#0A192F]/90 divide-y sm:divide-y-0 sm:divide-x divide-[#C49A45]/20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border border-[#C49A45]/30 bg-white/95 dark:bg-[#0A192F]/90 divide-y sm:divide-y-0 sm:divide-x divide-[#0A192F]/10 dark:divide-[#C49A45]/20 transition-colors duration-150">
           {pillars.map((pillar, idx) => {
             const isSelected = activePillar === pillar.id;
             return (
@@ -86,27 +86,29 @@ export function HeroSection({
                 onMouseLeave={() => setActivePillar(null)}
                 onClick={() => onSelectCategory(pillar.id)}
                 className={`group p-6 flex flex-col justify-between transition-colors duration-150 cursor-pointer ${
-                  isSelected ? 'bg-[#112240]' : 'hover:bg-[#112240]/80'
+                  isSelected
+                    ? 'bg-[#F0ECE1] dark:bg-[#112240]'
+                    : 'hover:bg-[#F7F5F0] dark:hover:bg-[#112240]/80'
                 }`}
               >
                 <div>
-                  <div className="text-xs font-mono-nums text-[#C49A45] mb-3">
+                  <div className="text-xs font-mono-nums text-[#9E7823] dark:text-[#C49A45] mb-3">
                     0{idx + 1}.
                   </div>
-                  <h2 className="font-serif-display text-lg font-semibold text-[#F8FAFC] mb-2">
+                  <h2 className="font-serif-display text-lg font-semibold text-[#0A192F] dark:text-[#F8FAFC] mb-2">
                     {pickLocalized(pillar.name, lang)}
                   </h2>
-                  <p className="text-xs text-[#94A3B8] leading-relaxed line-clamp-2">
+                  <p className="text-xs text-[#475569] dark:text-[#94A3B8] leading-relaxed line-clamp-2">
                     {pickLocalized(pillar.subtitle, lang)}
                   </p>
                 </div>
 
-                <div className="mt-5 pt-4 border-t border-white/10 flex items-center justify-between">
+                <div className="mt-5 pt-4 border-t border-[#0A192F]/10 dark:border-white/10 flex items-center justify-between">
                   <span
                     className={`inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider transition-opacity duration-150 ${
                       isSelected
-                        ? 'text-[#C49A45] opacity-100'
-                        : 'text-[#E8DCC4]/75 group-hover:text-[#C49A45]'
+                        ? 'text-[#9E7823] dark:text-[#C49A45] opacity-100'
+                        : 'text-[#334155] dark:text-[#E8DCC4]/75 group-hover:text-[#9E7823] dark:group-hover:text-[#C49A45]'
                     }`}
                   >
                     {t('hero.discover')}

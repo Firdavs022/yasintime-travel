@@ -219,9 +219,9 @@ export function ToursTab({
   return (
     <div className="space-y-8">
       {/* Categories CMS */}
-      <div className="border border-white/10 bg-[#112240] p-5 space-y-5">
+      <div className="border border-[#0A192F]/12 dark:border-white/10 bg-white dark:bg-[#112240] p-5 space-y-5">
         <div className="flex items-center justify-between">
-          <h3 className="font-serif-display text-lg font-semibold text-[#F8FAFC]">
+          <h3 className="font-serif-display text-lg font-semibold text-[#0A192F] dark:text-[#F8FAFC]">
             Kategoriyalar boshqaruvi ({categories.length})
           </h3>
         </div>
@@ -230,11 +230,13 @@ export function ToursTab({
           {categories.map((cat) => (
             <div
               key={cat.id}
-              className="border border-white/10 bg-[#0A192F] p-3.5 flex items-start justify-between gap-2"
+              className="border border-[#0A192F]/10 dark:border-white/10 bg-[#F7F5F0] dark:bg-[#0A192F] p-3.5 flex items-start justify-between gap-2"
             >
               <div>
-                <div className="text-sm font-medium text-[#F8FAFC]">{cat.name.uz}</div>
-                <div className="font-mono-nums text-[11px] text-[#C49A45] mt-0.5">
+                <div className="text-sm font-medium text-[#0A192F] dark:text-[#F8FAFC]">
+                  {cat.name.uz}
+                </div>
+                <div className="font-mono-nums text-[11px] text-[#9E7823] dark:text-[#C49A45] mt-0.5">
                   /{cat.slug}
                 </div>
               </div>
@@ -242,7 +244,7 @@ export function ToursTab({
                 <button
                   type="button"
                   onClick={() => handleDeleteCategory(cat.id)}
-                  className="text-[#94A3B8] hover:text-red-400 p-1 cursor-pointer"
+                  className="text-[#64748B] dark:text-[#94A3B8] hover:text-red-600 dark:hover:text-red-400 p-1 cursor-pointer"
                   title="Delete category"
                 >
                   <Trash2 className="w-3.5 h-3.5" />
@@ -255,7 +257,7 @@ export function ToursTab({
         {isAdmin && (
           <form
             onSubmit={handleCreateCategory}
-            className="pt-4 border-t border-white/10 grid grid-cols-1 sm:grid-cols-5 gap-3"
+            className="pt-4 border-t border-[#0A192F]/10 dark:border-white/10 grid grid-cols-1 sm:grid-cols-5 gap-3"
           >
             <input
               type="text"
@@ -263,21 +265,21 @@ export function ToursTab({
               placeholder="Nomi (UZ)*"
               value={catNameUz}
               onChange={(e) => setCatNameUz(e.target.value)}
-              className="bg-[#0A192F] border border-white/15 px-3 py-2 text-xs text-[#F8FAFC] focus:outline-none focus:border-[#C49A45]"
+              className="bg-[#F7F5F0] dark:bg-[#0A192F] border border-[#0A192F]/15 dark:border-white/15 px-3 py-2 text-xs text-[#0A192F] dark:text-[#F8FAFC] focus:outline-none focus:border-[#C49A45]"
             />
             <input
               type="text"
               placeholder="Название (RU)"
               value={catNameRu}
               onChange={(e) => setCatNameRu(e.target.value)}
-              className="bg-[#0A192F] border border-white/15 px-3 py-2 text-xs text-[#F8FAFC] focus:outline-none focus:border-[#C49A45]"
+              className="bg-[#F7F5F0] dark:bg-[#0A192F] border border-[#0A192F]/15 dark:border-white/15 px-3 py-2 text-xs text-[#0A192F] dark:text-[#F8FAFC] focus:outline-none focus:border-[#C49A45]"
             />
             <input
               type="text"
               placeholder="Name (EN)"
               value={catNameEn}
               onChange={(e) => setCatNameEn(e.target.value)}
-              className="bg-[#0A192F] border border-white/15 px-3 py-2 text-xs text-[#F8FAFC] focus:outline-none focus:border-[#C49A45]"
+              className="bg-[#F7F5F0] dark:bg-[#0A192F] border border-[#0A192F]/15 dark:border-white/15 px-3 py-2 text-xs text-[#0A192F] dark:text-[#F8FAFC] focus:outline-none focus:border-[#C49A45]"
             />
             <input
               type="text"
@@ -285,7 +287,7 @@ export function ToursTab({
               placeholder="Slug (e.g. honeymoon)"
               value={catSlug}
               onChange={(e) => setCatSlug(e.target.value)}
-              className="bg-[#0A192F] border border-white/15 px-3 py-2 text-xs text-[#F8FAFC] font-mono-nums focus:outline-none focus:border-[#C49A45]"
+              className="bg-[#F7F5F0] dark:bg-[#0A192F] border border-[#0A192F]/15 dark:border-white/15 px-3 py-2 text-xs text-[#0A192F] dark:text-[#F8FAFC] font-mono-nums focus:outline-none focus:border-[#C49A45]"
             />
             <button
               type="submit"
@@ -300,15 +302,15 @@ export function ToursTab({
 
       {/* Tour Packages CMS */}
       <div className="space-y-4">
-        <div className="flex flex-wrap items-center justify-between gap-4 border border-white/10 bg-[#112240] p-4">
-          <h3 className="font-serif-display text-lg font-semibold text-[#F8FAFC]">
+        <div className="flex flex-wrap items-center justify-between gap-4 border border-[#0A192F]/12 dark:border-white/10 bg-white dark:bg-[#112240] p-4">
+          <h3 className="font-serif-display text-lg font-semibold text-[#0A192F] dark:text-[#F8FAFC]">
             Sayohat paketlari ({tours.length})
           </h3>
           <div className="flex flex-wrap items-center gap-2.5">
             <button
               type="button"
               onClick={() => exportTours(tours, 'xlsx')}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-[#C49A45]/40 text-xs text-[#C49A45] hover:bg-[#C49A45] hover:text-[#0A192F] cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-[#C49A45]/50 text-xs text-[#9E7823] dark:text-[#C49A45] hover:bg-[#C49A45] hover:text-[#0A192F] cursor-pointer"
             >
               <Download className="w-3.5 h-3.5" />
               Excel (.xlsx)
@@ -316,7 +318,7 @@ export function ToursTab({
             <button
               type="button"
               onClick={() => exportTours(tours, 'csv')}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-white/15 text-xs text-[#E8DCC4] hover:border-[#C49A45] cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-[#0A192F]/15 dark:border-white/15 text-xs text-[#0A192F] dark:text-[#E8DCC4] hover:border-[#C49A45] cursor-pointer"
             >
               <Download className="w-3.5 h-3.5" />
               CSV
@@ -334,10 +336,10 @@ export function ToursTab({
           </div>
         </div>
 
-        <div className="border border-white/10 bg-[#112240] overflow-x-auto">
+        <div className="border border-[#0A192F]/12 dark:border-white/10 bg-white dark:bg-[#112240] overflow-x-auto">
           <table className="w-full text-left border-collapse min-w-[820px]">
             <thead>
-              <tr className="border-b border-white/10 text-[11px] uppercase tracking-wider text-[#94A3B8] bg-[#0A192F]/60">
+              <tr className="border-b border-[#0A192F]/10 dark:border-white/10 text-[11px] uppercase tracking-wider text-[#64748B] dark:text-[#94A3B8] bg-[#F7F5F0] dark:bg-[#0A192F]/60">
                 <th className="py-3 px-4 font-medium">Tur Nomi</th>
                 <th className="py-3 px-4 font-medium">Manzil & Muddat</th>
                 <th className="py-3 px-4 font-medium">Mehmonxona</th>
@@ -347,23 +349,33 @@ export function ToursTab({
                 {isAdmin && <th className="py-3 px-4 font-medium text-right">Amallar</th>}
               </tr>
             </thead>
-            <tbody className="divide-y divide-white/10 text-xs">
+            <tbody className="divide-y divide-[#0A192F]/10 dark:divide-white/10 text-xs">
               {tours.map((tour) => (
-                <tr key={tour.id} className="hover:bg-[#162B4D]/50">
-                  <td className="py-3 px-4 font-medium text-[#F8FAFC]">{tour.title.uz}</td>
-                  <td className="py-3 px-4 text-[#94A3B8]">
+                <tr key={tour.id} className="hover:bg-[#F7F5F0]/70 dark:hover:bg-[#162B4D]/50">
+                  <td className="py-3 px-4 font-medium text-[#0A192F] dark:text-[#F8FAFC]">
+                    {tour.title.uz}
+                  </td>
+                  <td className="py-3 px-4 text-[#64748B] dark:text-[#94A3B8]">
                     {tour.destination.uz} ·{' '}
                     <span className="font-mono-nums">{tour.durationDays}k</span>
                   </td>
-                  <td className="py-3 px-4 text-[#E8DCC4]">{tour.hotelName}</td>
-                  <td className="py-3 px-4 text-right font-mono-nums text-[#C49A45] font-semibold">
+                  <td className="py-3 px-4 text-[#475569] dark:text-[#E8DCC4]">
+                    {tour.hotelName}
+                  </td>
+                  <td className="py-3 px-4 text-right font-mono-nums text-[#9E7823] dark:text-[#C49A45] font-semibold">
                     ${tour.priceUsd.toLocaleString('en-US')}
                   </td>
-                  <td className="py-3 px-4 text-right font-mono-nums text-[#94A3B8]">
+                  <td className="py-3 px-4 text-right font-mono-nums text-[#64748B] dark:text-[#94A3B8]">
                     {tour.priceUzs.toLocaleString('en-US').replace(/,/g, ' ')}
                   </td>
                   <td className="py-3 px-4">
-                    <span className={tour.active ? 'text-emerald-400' : 'text-[#94A3B8]'}>
+                    <span
+                      className={
+                        tour.active
+                          ? 'text-emerald-700 dark:text-emerald-400'
+                          : 'text-[#64748B] dark:text-[#94A3B8]'
+                      }
+                    >
                       {tour.active ? 'Faol' : 'Yashirin'}
                     </span>
                   </td>
@@ -372,7 +384,7 @@ export function ToursTab({
                       <button
                         type="button"
                         onClick={() => openEditTour(tour)}
-                        className="p-1.5 text-[#E8DCC4] hover:text-[#C49A45] cursor-pointer"
+                        className="p-1.5 text-[#475569] dark:text-[#E8DCC4] hover:text-[#9E7823] dark:hover:text-[#C49A45] cursor-pointer"
                         title="Edit tour"
                       >
                         <Edit3 className="w-4 h-4" />
@@ -380,7 +392,7 @@ export function ToursTab({
                       <button
                         type="button"
                         onClick={() => handleDeleteTour(tour.id)}
-                        className="p-1.5 text-[#94A3B8] hover:text-red-400 cursor-pointer"
+                        className="p-1.5 text-[#64748B] dark:text-[#94A3B8] hover:text-red-600 dark:hover:text-red-400 cursor-pointer"
                         title="Delete tour"
                       >
                         <Trash2 className="w-4 h-4" />
@@ -396,16 +408,16 @@ export function ToursTab({
 
       {/* Add / Edit Tour Modal */}
       {modalOpen && (
-        <div className="fixed inset-0 z-50 bg-[#0A192F]/85 flex items-center justify-center p-4">
-          <div className="max-w-3xl w-full border border-[#C49A45]/40 bg-[#112240] p-6 max-h-[90vh] overflow-y-auto space-y-5">
-            <div className="flex items-center justify-between pb-3 border-b border-white/10">
-              <h3 className="font-serif-display text-xl font-semibold text-[#F8FAFC]">
+        <div className="fixed inset-0 z-50 bg-[#0A192F]/80 flex items-center justify-center p-4">
+          <div className="max-w-3xl w-full border border-[#C49A45]/40 bg-white dark:bg-[#112240] p-6 max-h-[90vh] overflow-y-auto space-y-5">
+            <div className="flex items-center justify-between pb-3 border-b border-[#0A192F]/10 dark:border-white/10">
+              <h3 className="font-serif-display text-xl font-semibold text-[#0A192F] dark:text-[#F8FAFC]">
                 {editingTourId ? 'Turni tahrirlash' : 'Yangi sayohat paketi yaratish'}
               </h3>
               <button
                 type="button"
                 onClick={() => setModalOpen(false)}
-                className="p-1.5 text-[#94A3B8] hover:text-[#F8FAFC] cursor-pointer"
+                className="p-1.5 text-[#64748B] dark:text-[#94A3B8] hover:text-[#0A192F] dark:hover:text-[#F8FAFC] cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -414,11 +426,13 @@ export function ToursTab({
             <form onSubmit={handleSaveTour} className="space-y-4 text-xs">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[#94A3B8] mb-1">Kategoriya *</label>
+                  <label className="block text-[#475569] dark:text-[#94A3B8] mb-1">
+                    Kategoriya *
+                  </label>
                   <select
                     value={categoryId}
                     onChange={(e) => setCategoryId(e.target.value)}
-                    className="w-full bg-[#0A192F] border border-white/15 px-3 py-2 text-[#F8FAFC]"
+                    className="w-full bg-[#F7F5F0] dark:bg-[#0A192F] border border-[#0A192F]/15 dark:border-white/15 px-3 py-2 text-[#0A192F] dark:text-[#F8FAFC]"
                   >
                     {categories.map((c) => (
                       <option key={c.id} value={c.id}>
@@ -428,128 +442,144 @@ export function ToursTab({
                   </select>
                 </div>
                 <div>
-                  <label className="block text-[#94A3B8] mb-1">Narx (USD) *</label>
+                  <label className="block text-[#475569] dark:text-[#94A3B8] mb-1">
+                    Narx (USD) *
+                  </label>
                   <input
                     type="number"
                     required
                     min={0}
                     value={priceUsd}
                     onChange={(e) => setPriceUsd(Number(e.target.value) || 0)}
-                    className="w-full bg-[#0A192F] border border-white/15 px-3 py-2 text-[#F8FAFC] font-mono-nums"
+                    className="w-full bg-[#F7F5F0] dark:bg-[#0A192F] border border-[#0A192F]/15 dark:border-white/15 px-3 py-2 text-[#0A192F] dark:text-[#F8FAFC] font-mono-nums"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
-                  <label className="block text-[#94A3B8] mb-1">Tur nomi (UZ) *</label>
+                  <label className="block text-[#475569] dark:text-[#94A3B8] mb-1">
+                    Tur nomi (UZ) *
+                  </label>
                   <input
                     type="text"
                     required
                     value={titleUz}
                     onChange={(e) => setTitleUz(e.target.value)}
-                    className="w-full bg-[#0A192F] border border-white/15 px-3 py-2 text-[#F8FAFC]"
+                    className="w-full bg-[#F7F5F0] dark:bg-[#0A192F] border border-[#0A192F]/15 dark:border-white/15 px-3 py-2 text-[#0A192F] dark:text-[#F8FAFC]"
                   />
                 </div>
                 <div>
-                  <label className="block text-[#94A3B8] mb-1">Название (RU)</label>
+                  <label className="block text-[#475569] dark:text-[#94A3B8] mb-1">
+                    Название (RU)
+                  </label>
                   <input
                     type="text"
                     value={titleRu}
                     onChange={(e) => setTitleRu(e.target.value)}
-                    className="w-full bg-[#0A192F] border border-white/15 px-3 py-2 text-[#F8FAFC]"
+                    className="w-full bg-[#F7F5F0] dark:bg-[#0A192F] border border-[#0A192F]/15 dark:border-white/15 px-3 py-2 text-[#0A192F] dark:text-[#F8FAFC]"
                   />
                 </div>
                 <div>
-                  <label className="block text-[#94A3B8] mb-1">Title (EN)</label>
+                  <label className="block text-[#475569] dark:text-[#94A3B8] mb-1">Title (EN)</label>
                   <input
                     type="text"
                     value={titleEn}
                     onChange={(e) => setTitleEn(e.target.value)}
-                    className="w-full bg-[#0A192F] border border-white/15 px-3 py-2 text-[#F8FAFC]"
+                    className="w-full bg-[#F7F5F0] dark:bg-[#0A192F] border border-[#0A192F]/15 dark:border-white/15 px-3 py-2 text-[#0A192F] dark:text-[#F8FAFC]"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 <div>
-                  <label className="block text-[#94A3B8] mb-1">Manzil (UZ) *</label>
+                  <label className="block text-[#475569] dark:text-[#94A3B8] mb-1">
+                    Manzil (UZ) *
+                  </label>
                   <input
                     type="text"
                     required
                     placeholder="Dubay, BAA"
                     value={destUz}
                     onChange={(e) => setDestUz(e.target.value)}
-                    className="w-full bg-[#0A192F] border border-white/15 px-3 py-2 text-[#F8FAFC]"
+                    className="w-full bg-[#F7F5F0] dark:bg-[#0A192F] border border-[#0A192F]/15 dark:border-white/15 px-3 py-2 text-[#0A192F] dark:text-[#F8FAFC]"
                   />
                 </div>
                 <div>
-                  <label className="block text-[#94A3B8] mb-1">Davlat kodi</label>
+                  <label className="block text-[#475569] dark:text-[#94A3B8] mb-1">
+                    Davlat kodi
+                  </label>
                   <input
                     type="text"
                     value={countryCode}
                     onChange={(e) => setCountryCode(e.target.value.toUpperCase())}
-                    className="w-full bg-[#0A192F] border border-white/15 px-3 py-2 text-[#F8FAFC] font-mono-nums"
+                    className="w-full bg-[#F7F5F0] dark:bg-[#0A192F] border border-[#0A192F]/15 dark:border-white/15 px-3 py-2 text-[#0A192F] dark:text-[#F8FAFC] font-mono-nums"
                   />
                 </div>
                 <div>
-                  <label className="block text-[#94A3B8] mb-1">Kunlar</label>
+                  <label className="block text-[#475569] dark:text-[#94A3B8] mb-1">Kunlar</label>
                   <input
                     type="number"
                     min={1}
                     value={durationDays}
                     onChange={(e) => setDurationDays(Number(e.target.value) || 1)}
-                    className="w-full bg-[#0A192F] border border-white/15 px-3 py-2 text-[#F8FAFC] font-mono-nums"
+                    className="w-full bg-[#F7F5F0] dark:bg-[#0A192F] border border-[#0A192F]/15 dark:border-white/15 px-3 py-2 text-[#0A192F] dark:text-[#F8FAFC] font-mono-nums"
                   />
                 </div>
                 <div>
-                  <label className="block text-[#94A3B8] mb-1">Tunlar</label>
+                  <label className="block text-[#475569] dark:text-[#94A3B8] mb-1">Tunlar</label>
                   <input
                     type="number"
                     min={0}
                     value={durationNights}
                     onChange={(e) => setDurationNights(Number(e.target.value) || 0)}
-                    className="w-full bg-[#0A192F] border border-white/15 px-3 py-2 text-[#F8FAFC] font-mono-nums"
+                    className="w-full bg-[#F7F5F0] dark:bg-[#0A192F] border border-[#0A192F]/15 dark:border-white/15 px-3 py-2 text-[#0A192F] dark:text-[#F8FAFC] font-mono-nums"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div className="sm:col-span-2">
-                  <label className="block text-[#94A3B8] mb-1">Mehmonxona nomi</label>
+                  <label className="block text-[#475569] dark:text-[#94A3B8] mb-1">
+                    Mehmonxona nomi
+                  </label>
                   <input
                     type="text"
                     value={hotelName}
                     onChange={(e) => setHotelName(e.target.value)}
-                    className="w-full bg-[#0A192F] border border-white/15 px-3 py-2 text-[#F8FAFC]"
+                    className="w-full bg-[#F7F5F0] dark:bg-[#0A192F] border border-[#0A192F]/15 dark:border-white/15 px-3 py-2 text-[#0A192F] dark:text-[#F8FAFC]"
                   />
                 </div>
                 <div>
-                  <label className="block text-[#94A3B8] mb-1">Yulduzlar (3–5)</label>
+                  <label className="block text-[#475569] dark:text-[#94A3B8] mb-1">
+                    Yulduzlar (3–5)
+                  </label>
                   <input
                     type="number"
                     min={3}
                     max={5}
                     value={hotelStars}
                     onChange={(e) => setHotelStars(Number(e.target.value) || 5)}
-                    className="w-full bg-[#0A192F] border border-white/15 px-3 py-2 text-[#F8FAFC] font-mono-nums"
+                    className="w-full bg-[#F7F5F0] dark:bg-[#0A192F] border border-[#0A192F]/15 dark:border-white/15 px-3 py-2 text-[#0A192F] dark:text-[#F8FAFC] font-mono-nums"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-[#94A3B8] mb-1">Tavsif (UZ)</label>
+                <label className="block text-[#475569] dark:text-[#94A3B8] mb-1">Tavsif (UZ)</label>
                 <textarea
                   rows={2}
                   value={summaryUz}
                   onChange={(e) => setSummaryUz(e.target.value)}
-                  className="w-full bg-[#0A192F] border border-white/15 px-3 py-2 text-[#F8FAFC]"
+                  className="w-full bg-[#F7F5F0] dark:bg-[#0A192F] border border-[#0A192F]/15 dark:border-white/15 px-3 py-2 text-[#0A192F] dark:text-[#F8FAFC]"
                 />
               </div>
 
               {/* Multiple Photos */}
-              <div className="space-y-2 border-t border-white/10 pt-3">
-                <label className="block text-[#94A3B8]">Rasmlar (Multi-photo URL)</label>
+              <div className="space-y-2 border-t border-[#0A192F]/10 dark:border-white/10 pt-3">
+                <label className="block text-[#475569] dark:text-[#94A3B8]">
+                  Rasmlar (Multi-photo URL)
+                </label>
                 <div className="flex flex-wrap gap-1.5">
                   {PRESET_PHOTOS.map((p) => (
                     <button
@@ -558,7 +588,7 @@ export function ToursTab({
                       onClick={() =>
                         setPhotos((prev) => (prev.includes(p.url) ? prev : [...prev, p.url]))
                       }
-                      className="px-2.5 py-1 border border-white/15 bg-[#0A192F] text-[11px] text-[#E8DCC4] hover:border-[#C49A45] cursor-pointer"
+                      className="px-2.5 py-1 border border-[#0A192F]/15 dark:border-white/15 bg-[#F7F5F0] dark:bg-[#0A192F] text-[11px] text-[#0A192F] dark:text-[#E8DCC4] hover:border-[#C49A45] cursor-pointer"
                     >
                       + {p.label}
                     </button>
@@ -570,7 +600,7 @@ export function ToursTab({
                     placeholder="Rasm URL manzilini kiriting..."
                     value={newPhotoUrl}
                     onChange={(e) => setNewPhotoUrl(e.target.value)}
-                    className="flex-1 bg-[#0A192F] border border-white/15 px-3 py-2 text-[#F8FAFC]"
+                    className="flex-1 bg-[#F7F5F0] dark:bg-[#0A192F] border border-[#0A192F]/15 dark:border-white/15 px-3 py-2 text-[#0A192F] dark:text-[#F8FAFC]"
                   />
                   <button
                     type="button"
@@ -580,7 +610,7 @@ export function ToursTab({
                         setNewPhotoUrl('');
                       }
                     }}
-                    className="px-3 py-2 border border-[#C49A45] text-[#C49A45] cursor-pointer"
+                    className="px-3 py-2 border border-[#C49A45] text-[#9E7823] dark:text-[#C49A45] cursor-pointer"
                   >
                     Qo‘shish
                   </button>
@@ -589,13 +619,15 @@ export function ToursTab({
                   {photos.map((url, idx) => (
                     <div
                       key={`${url}-${idx}`}
-                      className="flex items-center justify-between bg-[#0A192F] px-3 py-1.5 border border-white/10"
+                      className="flex items-center justify-between bg-[#F7F5F0] dark:bg-[#0A192F] px-3 py-1.5 border border-[#0A192F]/10 dark:border-white/10"
                     >
-                      <span className="truncate text-[11px] text-[#E8DCC4]">{url}</span>
+                      <span className="truncate text-[11px] text-[#0A192F] dark:text-[#E8DCC4]">
+                        {url}
+                      </span>
                       <button
                         type="button"
                         onClick={() => setPhotos((prev) => prev.filter((_, i) => i !== idx))}
-                        className="text-red-400 ml-2 cursor-pointer"
+                        className="text-red-600 dark:text-red-400 ml-2 cursor-pointer"
                       >
                         ×
                       </button>
@@ -606,7 +638,7 @@ export function ToursTab({
 
               {/* Checkboxes */}
               <div className="flex flex-wrap items-center gap-5 pt-2">
-                <label className="flex items-center gap-2 text-[#E8DCC4] cursor-pointer">
+                <label className="flex items-center gap-2 text-[#0A192F] dark:text-[#E8DCC4] cursor-pointer">
                   <input
                     type="checkbox"
                     checked={includesFlight}
@@ -614,7 +646,7 @@ export function ToursTab({
                   />
                   Aviachipta
                 </label>
-                <label className="flex items-center gap-2 text-[#E8DCC4] cursor-pointer">
+                <label className="flex items-center gap-2 text-[#0A192F] dark:text-[#E8DCC4] cursor-pointer">
                   <input
                     type="checkbox"
                     checked={includesTransfer}
@@ -622,7 +654,7 @@ export function ToursTab({
                   />
                   VIP Transfer
                 </label>
-                <label className="flex items-center gap-2 text-[#E8DCC4] cursor-pointer">
+                <label className="flex items-center gap-2 text-[#0A192F] dark:text-[#E8DCC4] cursor-pointer">
                   <input
                     type="checkbox"
                     checked={includesInsurance}
@@ -630,7 +662,7 @@ export function ToursTab({
                   />
                   Sug‘urta
                 </label>
-                <label className="flex items-center gap-2 text-[#E8DCC4] cursor-pointer">
+                <label className="flex items-center gap-2 text-[#0A192F] dark:text-[#E8DCC4] cursor-pointer">
                   <input
                     type="checkbox"
                     checked={active}
@@ -640,11 +672,11 @@ export function ToursTab({
                 </label>
               </div>
 
-              <div className="pt-4 border-t border-white/10 flex justify-end gap-3">
+              <div className="pt-4 border-t border-[#0A192F]/10 dark:border-white/10 flex justify-end gap-3">
                 <button
                   type="button"
                   onClick={() => setModalOpen(false)}
-                  className="px-4 py-2 border border-white/15 text-[#94A3B8] cursor-pointer"
+                  className="px-4 py-2 border border-[#0A192F]/15 dark:border-white/15 text-[#64748B] dark:text-[#94A3B8] cursor-pointer"
                 >
                   Bekor qilish
                 </button>

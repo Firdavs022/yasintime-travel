@@ -40,28 +40,30 @@ export function Footer({ onOpenGuide }: FooterProps) {
   ];
 
   return (
-    <footer className="bg-[#081224] text-[#E8DCC4]">
+    <footer className="bg-[#E9E4D8] dark:bg-[#081224] text-[#334155] dark:text-[#E8DCC4] transition-colors duration-150">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-white/10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-[#0A192F]/12 dark:border-white/10">
           {/* Brand Column */}
           <div className="lg:col-span-4 space-y-5">
             <div className="flex items-center gap-3">
-              <img
-                src="/assets/aistudio/Group_8_13159e01.png"
-                alt="YasinTime Travel Logo"
-                className="h-11 w-11 object-contain"
-                referrerPolicy="no-referrer"
-              />
+              <span className="bg-[#0A192F] p-1 inline-flex items-center justify-center shrink-0">
+                <img
+                  src="/assets/aistudio/Group_8_13159e01.png"
+                  alt="YasinTime Travel Logo"
+                  className="h-9 w-9 object-contain"
+                  referrerPolicy="no-referrer"
+                />
+              </span>
               <div>
-                <div className="font-cinzel text-base font-semibold tracking-[0.14em] text-[#F8FAFC]">
+                <div className="font-cinzel text-base font-semibold tracking-[0.14em] text-[#0A192F] dark:text-[#F8FAFC]">
                   YASIN TIME TRAVEL
                 </div>
-                <div className="text-[11px] text-[#94A3B8]">
+                <div className="text-[11px] text-[#64748B] dark:text-[#94A3B8]">
                   Tashkent · Luxury & Spiritual Travel
                 </div>
               </div>
             </div>
-            <p className="text-xs text-[#94A3B8] leading-relaxed max-w-sm">
+            <p className="text-xs text-[#475569] dark:text-[#94A3B8] leading-relaxed max-w-sm">
               {t('hero.subtitle')}
             </p>
             <div className="pt-1">
@@ -71,7 +73,7 @@ export function Footer({ onOpenGuide }: FooterProps) {
 
           {/* Aviasales-Style Quick Links / Guides */}
           <div className="lg:col-span-3">
-            <h4 className="text-xs font-semibold uppercase tracking-[0.16em] text-[#C49A45] mb-4">
+            <h4 className="text-xs font-semibold uppercase tracking-[0.16em] text-[#9E7823] dark:text-[#C49A45] mb-4">
               {t('footer.guidesCol')}
             </h4>
             <ul className="space-y-2.5 text-xs">
@@ -80,7 +82,7 @@ export function Footer({ onOpenGuide }: FooterProps) {
                   <button
                     type="button"
                     onClick={() => onOpenGuide(g.slug)}
-                    className="text-[#E8DCC4]/80 hover:text-[#C49A45] transition-colors cursor-pointer text-left"
+                    className="text-[#334155] dark:text-[#E8DCC4]/80 hover:text-[#9E7823] dark:hover:text-[#C49A45] transition-colors cursor-pointer text-left"
                   >
                     {t(g.labelKey)}
                   </button>
@@ -91,25 +93,25 @@ export function Footer({ onOpenGuide }: FooterProps) {
 
           {/* Direct Contacts */}
           <div className="lg:col-span-2">
-            <h4 className="text-xs font-semibold uppercase tracking-[0.16em] text-[#C49A45] mb-4">
+            <h4 className="text-xs font-semibold uppercase tracking-[0.16em] text-[#9E7823] dark:text-[#C49A45] mb-4">
               {t('footer.contactsCol')}
             </h4>
             <ul className="space-y-3 text-xs">
               <li>
                 <a
                   href="tel:+998508767722"
-                  className="inline-flex items-center gap-2 font-mono-nums text-[#F8FAFC] hover:text-[#C49A45]"
+                  className="inline-flex items-center gap-2 font-mono-nums text-[#0A192F] dark:text-[#F8FAFC] hover:text-[#9E7823] dark:hover:text-[#C49A45]"
                 >
-                  <Phone className="w-3.5 h-3.5 text-[#C49A45]" />
+                  <Phone className="w-3.5 h-3.5 text-[#9E7823] dark:text-[#C49A45]" />
                   +998 50 876 77 22
                 </a>
               </li>
               <li>
                 <a
                   href="mailto:ooo.yasintime@gmail.com"
-                  className="inline-flex items-center gap-2 text-[#E8DCC4]/85 hover:text-[#C49A45]"
+                  className="inline-flex items-center gap-2 text-[#334155] dark:text-[#E8DCC4]/85 hover:text-[#9E7823] dark:hover:text-[#C49A45]"
                 >
-                  <Mail className="w-3.5 h-3.5 text-[#C49A45]" />
+                  <Mail className="w-3.5 h-3.5 text-[#9E7823] dark:text-[#C49A45]" />
                   ooo.yasintime@gmail.com
                 </a>
               </li>
@@ -118,9 +120,9 @@ export function Footer({ onOpenGuide }: FooterProps) {
                   href="https://instagram.com/yasintime.travel"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 text-[#E8DCC4]/85 hover:text-[#C49A45]"
+                  className="inline-flex items-center gap-2 text-[#334155] dark:text-[#E8DCC4]/85 hover:text-[#9E7823] dark:hover:text-[#C49A45]"
                 >
-                  <Instagram className="w-3.5 h-3.5 text-[#C49A45]" />
+                  <Instagram className="w-3.5 h-3.5 text-[#9E7823] dark:text-[#C49A45]" />
                   @yasintime.travel
                 </a>
               </li>
@@ -129,9 +131,9 @@ export function Footer({ onOpenGuide }: FooterProps) {
                   href="https://t.me/yasintime"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 text-[#E8DCC4]/85 hover:text-[#C49A45]"
+                  className="inline-flex items-center gap-2 text-[#334155] dark:text-[#E8DCC4]/85 hover:text-[#9E7823] dark:hover:text-[#C49A45]"
                 >
-                  <Send className="w-3.5 h-3.5 text-[#C49A45]" />
+                  <Send className="w-3.5 h-3.5 text-[#9E7823] dark:text-[#C49A45]" />
                   @yasintime
                 </a>
               </li>
@@ -140,9 +142,9 @@ export function Footer({ onOpenGuide }: FooterProps) {
                   href="https://wa.me/998508767722"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 text-[#E8DCC4]/85 hover:text-[#C49A45]"
+                  className="inline-flex items-center gap-2 text-[#334155] dark:text-[#E8DCC4]/85 hover:text-[#9E7823] dark:hover:text-[#C49A45]"
                 >
-                  <MessageCircle className="w-3.5 h-3.5 text-[#C49A45]" />
+                  <MessageCircle className="w-3.5 h-3.5 text-[#9E7823] dark:text-[#C49A45]" />
                   WhatsApp
                 </a>
               </li>
@@ -151,14 +153,14 @@ export function Footer({ onOpenGuide }: FooterProps) {
 
           {/* Newsletter Subscription */}
           <div className="lg:col-span-3">
-            <h4 className="text-xs font-semibold uppercase tracking-[0.16em] text-[#C49A45] mb-3">
+            <h4 className="text-xs font-semibold uppercase tracking-[0.16em] text-[#9E7823] dark:text-[#C49A45] mb-3">
               {t('footer.newsletterTitle')}
             </h4>
-            <p className="text-xs text-[#94A3B8] leading-relaxed mb-4">
+            <p className="text-xs text-[#475569] dark:text-[#94A3B8] leading-relaxed mb-4">
               {t('footer.newsletterDesc')}
             </p>
             {subscribed ? (
-              <div className="flex items-center gap-2 text-xs text-[#C49A45] border border-[#C49A45]/30 bg-[#112240] p-3">
+              <div className="flex items-center gap-2 text-xs text-[#9E7823] dark:text-[#C49A45] border border-[#C49A45]/40 bg-white dark:bg-[#112240] p-3">
                 <CheckCircle2 className="w-4 h-4 shrink-0" />
                 <span>{t('footer.subscribed')}</span>
               </div>
@@ -170,7 +172,7 @@ export function Footer({ onOpenGuide }: FooterProps) {
                   value={contact}
                   onChange={(e) => setContact(e.target.value)}
                   placeholder={t('footer.newsletterPlaceholder')}
-                  className="w-full bg-[#112240] border border-white/15 px-3.5 py-2.5 text-xs text-[#F8FAFC] focus:outline-none focus:border-[#C49A45]"
+                  className="w-full bg-white dark:bg-[#112240] border border-[#0A192F]/15 dark:border-white/15 px-3.5 py-2.5 text-xs text-[#0A192F] dark:text-[#F8FAFC] focus:outline-none focus:border-[#C49A45]"
                 />
                 <button
                   type="submit"
@@ -184,8 +186,7 @@ export function Footer({ onOpenGuide }: FooterProps) {
           </div>
         </div>
 
-        {/* Bottom Copyright */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#94A3B8]">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#64748B] dark:text-[#94A3B8]">
           <div>{t('footer.copyright')}</div>
           <div>+998 50 876 77 22 · ooo.yasintime@gmail.com</div>
         </div>

@@ -6,10 +6,12 @@ import { HeroSection } from './components/public/HeroSection';
 import { Navbar } from './components/public/Navbar';
 import { TourCatalog } from './components/public/TourCatalog';
 import { TourDetailView } from './components/public/TourDetailView';
+import { useTheme } from './hooks/useTheme';
 import { fetchPublicBootstrap } from './services/api';
 import type { Category, Currency, TourPackage } from './types';
 
 export default function App() {
+  const { theme, toggleTheme } = useTheme();
   const [pathname, setPathname] = useState<string>(() => window.location.pathname || '/');
   const [hash, setHash] = useState<string>(() => window.location.hash || '');
   const [categories, setCategories] = useState<Category[]>([]);
@@ -73,6 +75,8 @@ export default function App() {
   if (pathname.startsWith('/admin') || hash.startsWith('#/admin')) {
     return (
       <AdminPortal
+        theme={theme}
+        onToggleTheme={toggleTheme}
         onBackToSite={() => {
           setHash('');
           navigate('/');
@@ -85,8 +89,13 @@ export default function App() {
   const activeTour = tourMatch ? tours.find((t) => t.id === tourMatch[1]) || null : null;
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#0A192F] text-[#F8FAFC]">
-      <Navbar onNavigate={navigate} onScrollTo={scrollToSection} />
+    <div className="min-h-screen flex flex-col bg-[#F7F5F0] text-[#0A192F] dark:bg-[#0A192F] dark:text-[#F8FAFC] transition-colors duration-150">
+      <Navbar
+        theme={theme}
+        onToggleTheme={toggleTheme}
+        onNavigate={navigate}
+        onScrollTo={scrollToSection}
+      />
 
       <main className="flex-1">
         {activeTour ? (
@@ -108,7 +117,7 @@ export default function App() {
             />
 
             {loading ? (
-              <div className="py-24 text-center text-xs text-[#94A3B8]">
+              <div className="py-24 text-center text-xs text-[#64748B] dark:text-[#94A3B8]">
                 YasinTime Travel...
               </div>
             ) : (

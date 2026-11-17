@@ -1,22 +1,20 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 @layer base {
   :root {
-    --navy-primary: #0A192F;
-    --navy-secondary: #112240;
-    --navy-elevated: #162B4D;
     --royal-gold: #C49A45;
     --royal-gold-hover: #D4AF61;
-    --champagne: #E8DCC4;
-    --text-primary: #F8FAFC;
-    --text-muted: #94A3B8;
-    --border-hairline: rgba(196, 154, 69, 0.22);
-    --border-subtle: rgba(248, 250, 252, 0.08);
   }
 
   html {
     scroll-behavior: smooth;
     font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #F7F5F0;
+    color: #0A192F;
+  }
+
+  html.dark {
     background-color: #0A192F;
     color: #F8FAFC;
   }
@@ -46,13 +44,13 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #0A192F;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(196, 154, 69, 0.35);
+  background: rgba(196, 154, 69, 0.4);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(196, 154, 69, 0.6);
+  background: rgba(196, 154, 69, 0.7);
 }

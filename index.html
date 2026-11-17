@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="uz">
+<html lang="uz" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,8 +15,20 @@
       href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=JetBrains+Mono:wght@400;500&family=Montserrat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap"
       rel="stylesheet"
     />
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('yasintime_theme');
+          if (t === 'light') {
+            document.documentElement.classList.remove('dark');
+          } else {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
-  <body class="bg-[#0A192F] text-[#F8FAFC] antialiased selection:bg-[#C49A45]/30 selection:text-[#F8FAFC]">
+  <body class="bg-[#F7F5F0] text-[#0A192F] dark:bg-[#0A192F] dark:text-[#F8FAFC] antialiased transition-colors duration-150 selection:bg-[#C49A45]/30">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

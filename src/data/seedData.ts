@@ -327,98 +327,9 @@ export const INITIAL_TOURS: TourPackage[] = [
   },
 ];
 
-export const INITIAL_LEADS: Lead[] = [
-  {
-    id: 'lead-101',
-    customerName: 'Sardorbek Alimov',
-    phone: '+998 90 912 44 10',
-    email: 's.alimov@uzcorp.uz',
-    tourId: 'tour-dubai-royal',
-    tourTitle: 'Dubay Royal Marina & Shaxsiy Yaxta',
-    travelers: 2,
-    preferredDate: dateDaysAgo(-18),
-    message: 'Biznes-klass chiptalar va Address Beach dengiz manzarali xona kerak.',
-    status: 'To‘lov qilindi',
-    assignedManager: 'Malika Karimova',
-    notes: 'Shartnoma #YT-408 imzolandi. 100% to‘lov qabul qilindi.',
-    dealAmountUsd: 5700,
-    source: 'booking',
-    createdAt: isoDaysAgo(16),
-    updatedAt: isoDaysAgo(12),
-  },
-  {
-    id: 'lead-102',
-    customerName: 'Dilshodbek Rahimov',
-    phone: '+998 93 550 18 90',
-    email: 'dilshod.r@mail.uz',
-    tourId: 'tour-umrah-makkah',
-    tourTitle: 'Umra Royal Haram — Makka & Madina VIP',
-    travelers: 4,
-    preferredDate: dateDaysAgo(-25),
-    message: 'Ota-onam bilan 4 kishilik Haram manzarali xona uchun narx hisoblab bering.',
-    status: 'To‘lov qilindi',
-    assignedManager: 'YasinTime Director',
-    notes: 'Viza hujjatlari topshirildi, to‘lov yakunlandi.',
-    dealAmountUsd: 9600,
-    source: 'booking',
-    createdAt: isoDaysAgo(11),
-    updatedAt: isoDaysAgo(6),
-  },
-  {
-    id: 'lead-103',
-    customerName: 'Madina Usmanova',
-    phone: '+998 97 701 33 21',
-    email: 'madina.u@gmail.com',
-    tourId: 'tour-maldives-villa',
-    tourTitle: 'Maldiv Orollari — Shaxsiy Suv Ustidagi Villa',
-    travelers: 2,
-    preferredDate: dateDaysAgo(-35),
-    message: 'Asal oyi uchun Soneva Jani suv usti villasi narxi va transfer tafsilotlari.',
-    status: 'Bron qilindi',
-    assignedManager: 'Malika Karimova',
-    notes: 'Avans $2,000 kutilmoqda, villa vaqtincha band qilindi.',
-    dealAmountUsd: 8400,
-    source: 'booking',
-    createdAt: isoDaysAgo(5),
-    updatedAt: isoDaysAgo(2),
-  },
-];
+export const INITIAL_LEADS: Lead[] = [];
 
-export const INITIAL_EXPENSES: Expense[] = [
-  {
-    id: 'exp-201',
-    title: 'Uzbekistan Airways Charter Block (Dubai)',
-    category: 'Flight',
-    amountUsd: 2150,
-    amountUzs: 2150 * EXCHANGE_RATE_UZS,
-    date: dateDaysAgo(12),
-    notes: 'Sardorbek Alimov VIP chipta to‘lovi',
-    createdBy: 'aziz.finance@yasintime.uz',
-    createdAt: isoDaysAgo(12),
-  },
-  {
-    id: 'exp-202',
-    title: 'Fairmont Makkah Hotel Allotment',
-    category: 'Hotel',
-    amountUsd: 4200,
-    amountUzs: 4200 * EXCHANGE_RATE_UZS,
-    date: dateDaysAgo(6),
-    notes: '4 kishilik Haram-view xonalar to‘lovi',
-    createdBy: 'ooo.yasintime@gmail.com',
-    createdAt: isoDaysAgo(6),
-  },
-  {
-    id: 'exp-203',
-    title: 'Toshkent Bosh Ofis Ijarasi',
-    category: 'Office',
-    amountUsd: 1200,
-    amountUzs: 1200 * EXCHANGE_RATE_UZS,
-    date: dateDaysAgo(1),
-    notes: 'Oylik ofis xarajatlari',
-    createdBy: 'aziz.finance@yasintime.uz',
-    createdAt: isoDaysAgo(1),
-  },
-];
+export const INITIAL_EXPENSES: Expense[] = [];
 
 export const INITIAL_STAFF: StaffUser[] = [
   {
@@ -427,36 +338,10 @@ export const INITIAL_STAFF: StaffUser[] = [
     email: 'ooo.yasintime@gmail.com',
     role: 'Admin',
     active: true,
-    createdAt: isoDaysAgo(60),
-  },
-  {
-    id: 'staff-2',
-    name: 'Malika Karimova',
-    email: 'malika.manager@yasintime.uz',
-    role: 'Manager',
-    active: true,
-    createdAt: isoDaysAgo(45),
-  },
-  {
-    id: 'staff-3',
-    name: 'Azizbek Tursunov',
-    email: 'aziz.finance@yasintime.uz',
-    role: 'Accountant',
-    active: true,
-    createdAt: isoDaysAgo(45),
+    createdAt: new Date().toISOString(),
   },
 ];
 
-export const INITIAL_AUDIT_LOGS: AuditLog[] = [
-  {
-    id: 'aud-1',
-    actorEmail: 'ooo.yasintime@gmail.com',
-    actorRole: 'Admin',
-    action: 'Updated Lead Status',
-    targetType: 'Lead',
-    details: 'Dilshodbek Rahimov status set to To‘lov qilindi ($9,600)',
-    timestamp: isoDaysAgo(6),
-  },
-];
+export const INITIAL_AUDIT_LOGS: AuditLog[] = [];
 
 export const INITIAL_SUBSCRIBERS: NewsletterSubscriber[] = [];

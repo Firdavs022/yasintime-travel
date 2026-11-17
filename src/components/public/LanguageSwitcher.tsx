@@ -20,7 +20,7 @@ export function LanguageSwitcher({ compact = false }: { compact?: boolean }) {
 
   return (
     <div
-      className={`inline-flex items-center border border-[#C49A45]/25 bg-[#112240]/70 ${
+      className={`inline-flex items-center border border-[#C49A45]/35 bg-white dark:bg-[#112240]/70 ${
         compact ? 'p-0.5' : 'p-1'
       }`}
       role="group"
@@ -36,7 +36,7 @@ export function LanguageSwitcher({ compact = false }: { compact?: boolean }) {
             className={`px-2.5 py-1 text-xs font-medium tracking-wider transition-colors duration-150 whitespace-nowrap shrink-0 cursor-pointer ${
               active
                 ? 'bg-[#C49A45] text-[#0A192F] font-semibold'
-                : 'text-[#E8DCC4]/80 hover:text-[#F8FAFC]'
+                : 'text-[#334155] dark:text-[#E8DCC4]/80 hover:text-[#0A192F] dark:hover:text-[#F8FAFC]'
             }`}
           >
             {l.label}

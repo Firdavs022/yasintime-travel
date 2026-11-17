@@ -162,7 +162,7 @@ export function FinanceTab({
   return (
     <div className="space-y-6">
       {/* Period Selector + Export */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border border-white/10 bg-[#112240] p-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border border-[#0A192F]/12 dark:border-white/10 bg-white dark:bg-[#112240] p-4">
         <div className="flex flex-wrap items-center gap-1.5">
           {(
             [
@@ -179,7 +179,7 @@ export function FinanceTab({
               className={`px-3.5 py-1.5 text-xs font-medium transition-colors cursor-pointer border whitespace-nowrap shrink-0 ${
                 period === p.id
                   ? 'bg-[#C49A45] text-[#0A192F] border-[#C49A45] font-semibold'
-                  : 'bg-[#0A192F] text-[#E8DCC4]/85 border-white/10 hover:border-[#C49A45]/40'
+                  : 'bg-[#F7F5F0] dark:bg-[#0A192F] text-[#0A192F]/80 dark:text-[#E8DCC4]/85 border-[#0A192F]/12 dark:border-white/10 hover:border-[#C49A45]/50'
               }`}
             >
               {p.label}
@@ -191,7 +191,7 @@ export function FinanceTab({
           <button
             type="button"
             onClick={() => exportFinancials(leads, expenses, 'xlsx')}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-[#C49A45]/40 text-xs text-[#C49A45] hover:bg-[#C49A45] hover:text-[#0A192F] cursor-pointer"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-[#C49A45]/50 text-xs text-[#9E7823] dark:text-[#C49A45] hover:bg-[#C49A45] hover:text-[#0A192F] cursor-pointer"
           >
             <Download className="w-3.5 h-3.5" />
             Excel (.xlsx)
@@ -199,7 +199,7 @@ export function FinanceTab({
           <button
             type="button"
             onClick={() => exportFinancials(leads, expenses, 'csv')}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-white/15 text-xs text-[#E8DCC4] hover:border-[#C49A45] cursor-pointer"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-[#0A192F]/15 dark:border-white/15 text-xs text-[#0A192F] dark:text-[#E8DCC4] hover:border-[#C49A45] cursor-pointer"
           >
             <Download className="w-3.5 h-3.5" />
             CSV
@@ -208,80 +208,86 @@ export function FinanceTab({
       </div>
 
       {/* KPI Strip */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border border-white/10 bg-[#112240] divide-y sm:divide-y-0 sm:divide-x divide-white/10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border border-[#0A192F]/12 dark:border-white/10 bg-white dark:bg-[#112240] divide-y sm:divide-y-0 sm:divide-x divide-[#0A192F]/10 dark:divide-white/10">
         <div className="p-5">
-          <div className="text-[11px] uppercase tracking-wider text-[#94A3B8]">
+          <div className="text-[11px] uppercase tracking-wider text-[#64748B] dark:text-[#94A3B8]">
             Tushum (To‘lov qilindi)
           </div>
-          <div className="font-mono-nums text-2xl font-semibold text-[#C49A45] mt-1.5">
+          <div className="font-mono-nums text-2xl font-semibold text-[#9E7823] dark:text-[#C49A45] mt-1.5">
             ${periodRevenue.toLocaleString('en-US')}
           </div>
-          <div className="font-mono-nums text-[11px] text-[#94A3B8] mt-1">
+          <div className="font-mono-nums text-[11px] text-[#64748B] dark:text-[#94A3B8] mt-1">
             {(periodRevenue * exchangeRate).toLocaleString('en-US').replace(/,/g, ' ')} UZS
           </div>
         </div>
 
         <div className="p-5">
-          <div className="text-[11px] uppercase tracking-wider text-[#94A3B8]">
+          <div className="text-[11px] uppercase tracking-wider text-[#64748B] dark:text-[#94A3B8]">
             Operatsion xarajatlar
           </div>
-          <div className="font-mono-nums text-2xl font-semibold text-[#F8FAFC] mt-1.5">
+          <div className="font-mono-nums text-2xl font-semibold text-[#0A192F] dark:text-[#F8FAFC] mt-1.5">
             ${periodExpenses.toLocaleString('en-US')}
           </div>
-          <div className="font-mono-nums text-[11px] text-[#94A3B8] mt-1">
+          <div className="font-mono-nums text-[11px] text-[#64748B] dark:text-[#94A3B8] mt-1">
             {(periodExpenses * exchangeRate).toLocaleString('en-US').replace(/,/g, ' ')} UZS
           </div>
         </div>
 
         <div className="p-5">
-          <div className="text-[11px] uppercase tracking-wider text-[#94A3B8]">Sof foyda</div>
+          <div className="text-[11px] uppercase tracking-wider text-[#64748B] dark:text-[#94A3B8]">
+            Sof foyda
+          </div>
           <div
             className={`font-mono-nums text-2xl font-semibold mt-1.5 ${
-              netProfit >= 0 ? 'text-emerald-400' : 'text-red-400'
+              netProfit >= 0
+                ? 'text-emerald-700 dark:text-emerald-400'
+                : 'text-red-600 dark:text-red-400'
             }`}
           >
             {netProfit >= 0 ? '+' : '-'}${Math.abs(netProfit).toLocaleString('en-US')}
           </div>
-          <div className="font-mono-nums text-[11px] text-[#94A3B8] mt-1">
+          <div className="font-mono-nums text-[11px] text-[#64748B] dark:text-[#94A3B8] mt-1">
             {(netProfit * exchangeRate).toLocaleString('en-US').replace(/,/g, ' ')} UZS
           </div>
         </div>
 
         <div className="p-5">
-          <div className="text-[11px] uppercase tracking-wider text-[#94A3B8]">
+          <div className="text-[11px] uppercase tracking-wider text-[#64748B] dark:text-[#94A3B8]">
             Rentabellik (Margin)
           </div>
-          <div className="font-mono-nums text-2xl font-semibold text-[#F8FAFC] mt-1.5">
+          <div className="font-mono-nums text-2xl font-semibold text-[#0A192F] dark:text-[#F8FAFC] mt-1.5">
             {margin}%
           </div>
-          <div className="text-[11px] text-[#94A3B8] mt-1">
+          <div className="text-[11px] text-[#64748B] dark:text-[#94A3B8] mt-1">
             {paidLeads.length} ta yopilgan bitim
           </div>
         </div>
       </div>
 
       {/* Interactive Revenue vs Expenses Chart */}
-      <div className="border border-white/10 bg-[#112240] p-6">
+      <div className="border border-[#0A192F]/12 dark:border-white/10 bg-white dark:bg-[#112240] p-6">
         <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
           <div>
-            <h3 className="font-serif-display text-lg font-semibold text-[#F8FAFC]">
+            <h3 className="font-serif-display text-lg font-semibold text-[#0A192F] dark:text-[#F8FAFC]">
               Tushum va Xarajatlar Dinamikasi
             </h3>
-            <p className="text-xs text-[#94A3B8]">USD ekvivalentida davriy tahlil</p>
+            <p className="text-xs text-[#64748B] dark:text-[#94A3B8]">
+              USD ekvivalentida davriy tahlil
+            </p>
           </div>
           <div className="flex items-center gap-5 text-xs">
-            <span className="inline-flex items-center gap-2 text-[#E8DCC4]">
+            <span className="inline-flex items-center gap-2 text-[#0A192F] dark:text-[#E8DCC4]">
               <span className="w-3 h-3 bg-[#C49A45] inline-block" />
               Tushum
             </span>
-            <span className="inline-flex items-center gap-2 text-[#94A3B8]">
-              <span className="w-3 h-3 bg-[#475569] inline-block" />
+            <span className="inline-flex items-center gap-2 text-[#64748B] dark:text-[#94A3B8]">
+              <span className="w-3 h-3 bg-[#94A3B8] dark:bg-[#475569] inline-block" />
               Xarajat
             </span>
           </div>
         </div>
 
-        <div className="h-64 flex items-end gap-4 sm:gap-8 pt-6 pb-2 border-b border-white/10">
+        <div className="h-64 flex items-end gap-4 sm:gap-8 pt-6 pb-2 border-b border-[#0A192F]/10 dark:border-white/10">
           {buckets.map((b, idx) => {
             const revH = Math.round((b.revenue / maxVal) * 180);
             const expH = Math.round((b.expense / maxVal) * 180);
@@ -294,9 +300,13 @@ export function FinanceTab({
                 className="flex-1 flex flex-col items-center justify-end h-full relative"
               >
                 {isHovered && (
-                  <div className="absolute -top-2 z-10 bg-[#0A192F] border border-[#C49A45]/50 px-2.5 py-1.5 text-[11px] font-mono-nums whitespace-nowrap">
-                    <div className="text-[#C49A45]">+${b.revenue.toLocaleString('en-US')}</div>
-                    <div className="text-[#94A3B8]">-${b.expense.toLocaleString('en-US')}</div>
+                  <div className="absolute -top-2 z-10 bg-white dark:bg-[#0A192F] border border-[#C49A45]/50 px-2.5 py-1.5 text-[11px] font-mono-nums whitespace-nowrap">
+                    <div className="text-[#9E7823] dark:text-[#C49A45]">
+                      +${b.revenue.toLocaleString('en-US')}
+                    </div>
+                    <div className="text-[#64748B] dark:text-[#94A3B8]">
+                      -${b.expense.toLocaleString('en-US')}
+                    </div>
                   </div>
                 )}
 
@@ -307,10 +317,10 @@ export function FinanceTab({
                   />
                   <div
                     style={{ height: `${Math.max(4, expH)}px` }}
-                    className="w-4 sm:w-6 bg-[#475569] transition-all duration-150"
+                    className="w-4 sm:w-6 bg-[#94A3B8] dark:bg-[#475569] transition-all duration-150"
                   />
                 </div>
-                <div className="text-[11px] font-mono-nums text-[#94A3B8] mt-3">
+                <div className="text-[11px] font-mono-nums text-[#64748B] dark:text-[#94A3B8] mt-3">
                   {b.label}
                 </div>
               </div>
@@ -324,31 +334,33 @@ export function FinanceTab({
         {canWrite && (
           <form
             onSubmit={handleAddExpense}
-            className="lg:col-span-4 border border-white/10 bg-[#112240] p-5 space-y-4 text-xs"
+            className="lg:col-span-4 border border-[#0A192F]/12 dark:border-white/10 bg-white dark:bg-[#112240] p-5 space-y-4 text-xs"
           >
-            <h3 className="font-serif-display text-lg font-semibold text-[#F8FAFC]">
+            <h3 className="font-serif-display text-lg font-semibold text-[#0A192F] dark:text-[#F8FAFC]">
               Yangi xarajat kiritish
             </h3>
 
             <div>
-              <label className="block text-[#94A3B8] mb-1">Xarajat nomi *</label>
+              <label className="block text-[#475569] dark:text-[#94A3B8] mb-1">
+                Xarajat nomi *
+              </label>
               <input
                 type="text"
                 required
                 placeholder="Masalan: Hotel booking Dubai"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="w-full bg-[#0A192F] border border-white/15 px-3 py-2 text-[#F8FAFC] focus:outline-none focus:border-[#C49A45]"
+                className="w-full bg-[#F7F5F0] dark:bg-[#0A192F] border border-[#0A192F]/15 dark:border-white/15 px-3 py-2 text-[#0A192F] dark:text-[#F8FAFC] focus:outline-none focus:border-[#C49A45]"
               />
             </div>
 
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block text-[#94A3B8] mb-1">Kategoriya</label>
+                <label className="block text-[#475569] dark:text-[#94A3B8] mb-1">Kategoriya</label>
                 <select
                   value={category}
                   onChange={(e) => setCategory(e.target.value as ExpenseCategory)}
-                  className="w-full bg-[#0A192F] border border-white/15 px-3 py-2 text-[#F8FAFC]"
+                  className="w-full bg-[#F7F5F0] dark:bg-[#0A192F] border border-[#0A192F]/15 dark:border-white/15 px-3 py-2 text-[#0A192F] dark:text-[#F8FAFC]"
                 >
                   {EXPENSE_CATEGORIES.map((c) => (
                     <option key={c} value={c}>
@@ -358,18 +370,20 @@ export function FinanceTab({
                 </select>
               </div>
               <div>
-                <label className="block text-[#94A3B8] mb-1">Sana</label>
+                <label className="block text-[#475569] dark:text-[#94A3B8] mb-1">Sana</label>
                 <input
                   type="date"
                   value={date}
                   onChange={(e) => setDate(e.target.value)}
-                  className="w-full bg-[#0A192F] border border-white/15 px-3 py-2 text-[#F8FAFC] font-mono-nums"
+                  className="w-full bg-[#F7F5F0] dark:bg-[#0A192F] border border-[#0A192F]/15 dark:border-white/15 px-3 py-2 text-[#0A192F] dark:text-[#F8FAFC] font-mono-nums"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-[#94A3B8] mb-1">Summa (USD) *</label>
+              <label className="block text-[#475569] dark:text-[#94A3B8] mb-1">
+                Summa (USD) *
+              </label>
               <input
                 type="number"
                 required
@@ -377,17 +391,17 @@ export function FinanceTab({
                 placeholder="500"
                 value={amountUsd}
                 onChange={(e) => setAmountUsd(e.target.value)}
-                className="w-full bg-[#0A192F] border border-white/15 px-3 py-2 text-[#F8FAFC] font-mono-nums"
+                className="w-full bg-[#F7F5F0] dark:bg-[#0A192F] border border-[#0A192F]/15 dark:border-white/15 px-3 py-2 text-[#0A192F] dark:text-[#F8FAFC] font-mono-nums"
               />
             </div>
 
             <div>
-              <label className="block text-[#94A3B8] mb-1">Izoh</label>
+              <label className="block text-[#475569] dark:text-[#94A3B8] mb-1">Izoh</label>
               <input
                 type="text"
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
-                className="w-full bg-[#0A192F] border border-white/15 px-3 py-2 text-[#F8FAFC]"
+                className="w-full bg-[#F7F5F0] dark:bg-[#0A192F] border border-[#0A192F]/15 dark:border-white/15 px-3 py-2 text-[#0A192F] dark:text-[#F8FAFC]"
               />
             </div>
 
@@ -405,16 +419,16 @@ export function FinanceTab({
         <div
           className={`${
             canWrite ? 'lg:col-span-8' : 'lg:col-span-12'
-          } border border-white/10 bg-[#112240] overflow-x-auto`}
+          } border border-[#0A192F]/12 dark:border-white/10 bg-white dark:bg-[#112240] overflow-x-auto`}
         >
-          <div className="p-4 border-b border-white/10">
-            <h3 className="font-serif-display text-lg font-semibold text-[#F8FAFC]">
+          <div className="p-4 border-b border-[#0A192F]/10 dark:border-white/10">
+            <h3 className="font-serif-display text-lg font-semibold text-[#0A192F] dark:text-[#F8FAFC]">
               Xarajatlar jurnali ({expenses.length})
             </h3>
           </div>
           <table className="w-full text-left border-collapse min-w-[600px]">
             <thead>
-              <tr className="border-b border-white/10 text-[11px] uppercase tracking-wider text-[#94A3B8] bg-[#0A192F]/60">
+              <tr className="border-b border-[#0A192F]/10 dark:border-white/10 text-[11px] uppercase tracking-wider text-[#64748B] dark:text-[#94A3B8] bg-[#F7F5F0] dark:bg-[#0A192F]/60">
                 <th className="py-3 px-4 font-medium">Sana</th>
                 <th className="py-3 px-4 font-medium">Xarajat nomi</th>
                 <th className="py-3 px-4 font-medium">Kategoriya</th>
@@ -422,31 +436,50 @@ export function FinanceTab({
                 {canWrite && <th className="py-3 px-4 font-medium text-right">Amal</th>}
               </tr>
             </thead>
-            <tbody className="divide-y divide-white/10 text-xs">
-              {expenses.map((exp) => (
-                <tr key={exp.id} className="hover:bg-[#162B4D]/50">
-                  <td className="py-3 px-4 font-mono-nums text-[#94A3B8]">{exp.date}</td>
-                  <td className="py-3 px-4">
-                    <div className="text-[#F8FAFC] font-medium">{exp.title}</div>
-                    {exp.notes && <div className="text-[#94A3B8] text-[11px]">{exp.notes}</div>}
+            <tbody className="divide-y divide-[#0A192F]/10 dark:divide-white/10 text-xs">
+              {expenses.length === 0 ? (
+                <tr>
+                  <td
+                    colSpan={canWrite ? 5 : 4}
+                    className="py-10 text-center text-[#64748B] dark:text-[#94A3B8]"
+                  >
+                    Hozircha xarajatlar kiritilmagan.
                   </td>
-                  <td className="py-3 px-4 text-[#C49A45]">{exp.category}</td>
-                  <td className="py-3 px-4 text-right font-mono-nums text-[#F8FAFC] font-medium">
-                    -${exp.amountUsd.toLocaleString('en-US')}
-                  </td>
-                  {canWrite && (
-                    <td className="py-3 px-4 text-right">
-                      <button
-                        type="button"
-                        onClick={() => handleDeleteExpense(exp.id)}
-                        className="p-1 text-[#94A3B8] hover:text-red-400 cursor-pointer"
-                      >
-                        <Trash2 className="w-3.5 h-3.5" />
-                      </button>
-                    </td>
-                  )}
                 </tr>
-              ))}
+              ) : (
+                expenses.map((exp) => (
+                  <tr key={exp.id} className="hover:bg-[#F7F5F0]/70 dark:hover:bg-[#162B4D]/50">
+                    <td className="py-3 px-4 font-mono-nums text-[#64748B] dark:text-[#94A3B8]">
+                      {exp.date}
+                    </td>
+                    <td className="py-3 px-4">
+                      <div className="text-[#0A192F] dark:text-[#F8FAFC] font-medium">
+                        {exp.title}
+                      </div>
+                      {exp.notes && (
+                        <div className="text-[#64748B] dark:text-[#94A3B8] text-[11px]">
+                          {exp.notes}
+                        </div>
+                      )}
+                    </td>
+                    <td className="py-3 px-4 text-[#9E7823] dark:text-[#C49A45]">{exp.category}</td>
+                    <td className="py-3 px-4 text-right font-mono-nums text-[#0A192F] dark:text-[#F8FAFC] font-medium">
+                      -${exp.amountUsd.toLocaleString('en-US')}
+                    </td>
+                    {canWrite && (
+                      <td className="py-3 px-4 text-right">
+                        <button
+                          type="button"
+                          onClick={() => handleDeleteExpense(exp.id)}
+                          className="p-1 text-[#64748B] dark:text-[#94A3B8] hover:text-red-600 dark:hover:text-red-400 cursor-pointer"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </button>
+                      </td>
+                    )}
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
